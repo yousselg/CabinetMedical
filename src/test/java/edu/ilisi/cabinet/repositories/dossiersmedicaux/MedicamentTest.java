@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import edu.ilisi.cabinet.model.actors.Docteur;
+import edu.ilisi.cabinet.model.dossiersmedicaux.Medicament;
 
 /**
  * @author Home
@@ -22,40 +22,37 @@ import edu.ilisi.cabinet.model.actors.Docteur;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DocteurTest {
+public class MedicamentTest {
 	
 	@Autowired
-	private DocteurRepository repo;
-	private Docteur docteur = new Docteur();
+	MedicamentRepository repo;
+	
+	private Medicament medicament = new Medicament();
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		docteur.setNom("Kabarousse");
-		docteur.setPrenom("saad");
-		docteur.setCIN("XXXXX");
-		docteur.setEmail("s.kabarousse@ilisi.edu");
-		docteur = repo.save(docteur);
-		System.out.println(docteur.getClass());
+		medicament.setLibelle("Doliprane");
+		medicament.setDescription("Doliprane pout tlm");
+		System.err.println("ehllo");
+		medicament = repo.save(medicament);
+		System.out.println(medicament.getClass());
 	}
 
 	@Test
 	public void save() {
-		docteur.setNom("Kabarousse");
-		docteur.setPrenom("saad");
-		docteur.setCIN("XXXXX");
-		docteur.setEmail("s.kabarousse@ilisi.edu");
-		docteur = repo.save(docteur);
-		assertNotNull(docteur.getId_personne());
+		
+		medicament = repo.save(medicament);
+		assertNotNull(medicament.getId_medicament());
 	}
 	
 	@Test
 	public void update() {
-		docteur.setNom("youssef");
-		docteur = repo.save(docteur);
-		assertEquals(docteur.getNom(), "youssef");
+		medicament.setLibelle("AIDS");
+		medicament = repo.save(medicament);
+		assertEquals(medicament.getLibelle(), "AIDS");
 	}
 	
 	@Test
@@ -65,9 +62,8 @@ public class DocteurTest {
 	
 	@Test
 	public void delete() {
-		System.out.println(docteur);
-		repo.delete(docteur);
-		assertFalse(repo.findById(docteur.getId_personne()).isPresent());
+		repo.delete(medicament);
+		assertFalse(repo.findById(medicament.getId_medicament()).isPresent());
 	}
 
 }

@@ -6,6 +6,7 @@ package edu.ilisi.cabinet.repositories.dossiersmedicaux;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import edu.ilisi.cabinet.model.actors.Docteur;
+import edu.ilisi.cabinet.model.dossiersmedicaux.Symptome;
 
 /**
  * @author Home
@@ -22,40 +23,35 @@ import edu.ilisi.cabinet.model.actors.Docteur;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DocteurTest {
+public class SymptomeTest {
 	
 	@Autowired
-	private DocteurRepository repo;
-	private Docteur docteur = new Docteur();
+	private SymptomeRepository repo;
+	private Symptome symptome = new Symptome();
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		docteur.setNom("Kabarousse");
-		docteur.setPrenom("saad");
-		docteur.setCIN("XXXXX");
-		docteur.setEmail("s.kabarousse@ilisi.edu");
-		docteur = repo.save(docteur);
-		System.out.println(docteur.getClass());
+		symptome.setLibele("SIDA");
+		symptome.setDescription("SIDA MODIRA BISSI7A");
+		symptome = repo.save(symptome);
+		System.out.println(symptome.getClass());
 	}
 
 	@Test
 	public void save() {
-		docteur.setNom("Kabarousse");
-		docteur.setPrenom("saad");
-		docteur.setCIN("XXXXX");
-		docteur.setEmail("s.kabarousse@ilisi.edu");
-		docteur = repo.save(docteur);
-		assertNotNull(docteur.getId_personne());
+		
+		symptome = repo.save(symptome);
+		assertNotNull(symptome.getId_symptome());
 	}
 	
 	@Test
 	public void update() {
-		docteur.setNom("youssef");
-		docteur = repo.save(docteur);
-		assertEquals(docteur.getNom(), "youssef");
+		symptome.setLibele("AIDS");
+		symptome = repo.save(symptome);
+		assertEquals(symptome.getLibele(), "AIDS");
 	}
 	
 	@Test
@@ -65,9 +61,8 @@ public class DocteurTest {
 	
 	@Test
 	public void delete() {
-		System.out.println(docteur);
-		repo.delete(docteur);
-		assertFalse(repo.findById(docteur.getId_personne()).isPresent());
+		repo.delete(symptome);
+		assertFalse(repo.findById(symptome.getId_symptome()).isPresent());
 	}
 
 }
