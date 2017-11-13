@@ -31,9 +31,12 @@ public class Maladie {
 	private Long id_maladie;
 	private String libele;
 	private String description;
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+
+
+	/*@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "maladie_patient", joinColumns = @JoinColumn(name = "idmaladie") , inverseJoinColumns = @JoinColumn(name = "idpatient") )
 	private List<Patient> patients;
+*/
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "maladie_symptome", joinColumns = @JoinColumn(name = "idmaladie") , inverseJoinColumns = @JoinColumn(name = "idsymptome") )
 	private List<Symptome> symptomes;

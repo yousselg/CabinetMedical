@@ -1,18 +1,15 @@
+
 /**
  * 
  */
 package edu.ilisi.cabinet.repositories.dossiersmedicaux;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
+import org.hamcrest.core.IsNot;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.ilisi.cabinet.model.actors.Docteur;
 
@@ -20,13 +17,12 @@ import edu.ilisi.cabinet.model.actors.Docteur;
  * @author Home
  *
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class DocteurTest {
 	
 	@Autowired
 	private DocteurRepository repo;
 	private Docteur docteur = new Docteur();
+	private Long idDocteur = null ;
 
 	/**
 	 * @throws java.lang.Exception
@@ -38,15 +34,11 @@ public class DocteurTest {
 		docteur.setCIN("XXXXX");
 		docteur.setEmail("s.kabarousse@ilisi.edu");
 		docteur = repo.save(docteur);
-		System.out.println(docteur.getClass());
 	}
 
 	@Test
 	public void save() {
-		docteur.setNom("Kabarousse");
-		docteur.setPrenom("saad");
-		docteur.setCIN("XXXXX");
-		docteur.setEmail("s.kabarousse@ilisi.edu");
+		
 		docteur = repo.save(docteur);
 		assertNotNull(docteur.getId_personne());
 	}
@@ -67,7 +59,8 @@ public class DocteurTest {
 	public void delete() {
 		System.out.println(docteur);
 		repo.delete(docteur);
-		assertFalse(repo.findById(docteur.getId_personne()).isPresent());
+		assertNull(repo.findById(docteur.getId_personne()));
 	}
 
 }
+

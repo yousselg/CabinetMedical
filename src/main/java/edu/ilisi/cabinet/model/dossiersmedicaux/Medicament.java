@@ -3,7 +3,6 @@ package edu.ilisi.cabinet.model.dossiersmedicaux;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +23,8 @@ public class Medicament {
 	private String libelle;
 	private String description;
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany
 	private List<Prescription> prescriptions;
+
 
 }
