@@ -3,15 +3,7 @@ package edu.ilisi.cabinet.model.dossiersmedicaux;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import edu.ilisi.cabinet.model.actors.Docteur;
 import lombok.Data;
@@ -39,5 +31,7 @@ public class Consultation {
 	@ManyToOne
 	private Examen examen;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	private DossierMedical dossiermedical ;
 
 }
