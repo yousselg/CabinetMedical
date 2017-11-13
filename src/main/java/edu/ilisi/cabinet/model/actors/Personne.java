@@ -30,6 +30,7 @@ public class Personne {
 	private String prenom;
 	private String email;
 	private String CIN;
+	private String telephone;
 	@Temporal(TemporalType.DATE)
 	private Date date_naissance;
 

@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.model.actors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,6 +19,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @Entity
 public class Docteur extends Personne {
+	public Docteur() {
+		consultations = new ArrayList<Consultation>();
+	}
 
 	@OneToMany
 	private List<Consultation> consultations;
