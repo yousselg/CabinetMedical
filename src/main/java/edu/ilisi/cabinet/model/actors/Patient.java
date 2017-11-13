@@ -27,14 +27,6 @@ public class Patient extends Personne {
 	@ManyToOne
 	private Ref_sex ref_sex;
 
-	private List<MaladieHerite> maladieHerites;
-	public List<MaladieHerite> getMaladieHerites() {
-		return maladieHerites;
-	}
-
-	public void setMaladieHerites(List<MaladieHerite> maladieHerites) {
-		this.maladieHerites = maladieHerites;
-	}
 
 	public Ref_sex getRef_sex() {
 		return ref_sex;
