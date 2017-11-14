@@ -20,13 +20,14 @@ public class DossierMedical {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id_dossier_medical;
+	@Temporal(TemporalType.DATE)
 	private Date date_creation;
 
 	@Column(name = "consultation_id")
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossiermedical")
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossiermedical",cascade = CascadeType.PERSIST)
 	private List<Consultation> consultations= new ArrayList<>();
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Patient patient;
 
 

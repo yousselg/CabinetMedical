@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.ilisi.cabinet.model.actors.Docteur;
 import lombok.Data;
 
@@ -24,12 +26,13 @@ public class Consultation {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idsymptome") )
 	private List<Symptome> symptomes;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Docteur docteur;
 	@ManyToOne
 	private Etat etat;
 	@ManyToOne
 	private Examen examen;
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	private DossierMedical dossiermedical ;
 

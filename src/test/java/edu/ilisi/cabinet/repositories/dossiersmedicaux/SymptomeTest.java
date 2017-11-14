@@ -62,7 +62,7 @@ public class SymptomeTest {
 	@Test
 	public void delete() {
 		repo.delete(symptome);
-		assertFalse(repo.findById(symptome.getId_symptome()).isPresent());
+		assertNotNull(repo.findOne(symptome.getId_symptome()));
 	}
 
 }

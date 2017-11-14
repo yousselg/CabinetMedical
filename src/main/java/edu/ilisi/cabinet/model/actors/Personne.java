@@ -24,7 +24,7 @@ import lombok.Data;
 public class Personne {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id_personne;
 	private String nom;
 	private String prenom;

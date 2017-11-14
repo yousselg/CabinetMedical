@@ -27,7 +27,7 @@ import lombok.Data;
 public class Maladie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id_maladie;
 	private String libele;
 	private String description;

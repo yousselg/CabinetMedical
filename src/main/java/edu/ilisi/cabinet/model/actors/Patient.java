@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.model.actors;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
@@ -16,12 +17,12 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
  * @created 12-nov.-2017 01:01:55
  */
 @Entity
-public class Patient extends Personne {
+public class Patient extends Personne implements Serializable{
 
-	@ManyToMany(mappedBy = "patients")
+	@ManyToMany(mappedBy = "patients",cascade = CascadeType.PERSIST)
 	private List<MaladieHerite> maladieHerites;
-	@ManyToOne
-	private Ref_sex ref_sex;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private RefSex ref_sex;
 
 	public List<MaladieHerite> getMaladieHerites() {
 		return maladieHerites;
@@ -31,11 +32,11 @@ public class Patient extends Personne {
 		this.maladieHerites = maladieHerites;
 	}
 
-	public Ref_sex getRef_sex() {
+	public RefSex getRef_sex() {
 		return ref_sex;
 	}
 
-	public void setRef_sex(Ref_sex ref_sex) {
+	public void setRef_sex(RefSex ref_sex) {
 		this.ref_sex = ref_sex;
 	}
 

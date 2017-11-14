@@ -1,7 +1,9 @@
 package edu.ilisi.cabinet.repositories.dossiersmedicaux;
 
-import edu.ilisi.cabinet.model.actors.Ref_sex;
+import edu.ilisi.cabinet.model.actors.RefSex;
 import org.springframework.data.repository.CrudRepository;
 
-public interface SexRepository extends CrudRepository<Ref_sex, Long> {
+public interface SexRepository extends CrudRepository<RefSex, Long> {
+	
+	public RefSex findByLibelle(String libelle);
 }

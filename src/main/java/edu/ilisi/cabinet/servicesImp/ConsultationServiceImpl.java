@@ -37,7 +37,7 @@ public class ConsultationServiceImpl implements ConsultationService{
 
     @Override
     public Consultation getConsultation(Long id) {
-        return Repository.findById((Long )id).get();
+        return Repository.findOne((Long )id);
     }
 
 }

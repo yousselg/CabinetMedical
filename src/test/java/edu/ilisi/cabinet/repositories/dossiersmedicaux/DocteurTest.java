@@ -59,7 +59,7 @@ public class DocteurTest {
 	public void delete() {
 		System.out.println(docteur);
 		repo.delete(docteur);
-		assertNull(repo.findById(docteur.getId_personne()));
+		assertNull(repo.findOne(docteur.getId_personne()));
 	}
 
 }

@@ -37,6 +37,6 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 
     @Override
     public DossierMedical getDossierMedical(Long id) {
-        return Repository.findById((Long )id).get();
+        return Repository.findOne((Long )id);
     }
 }
