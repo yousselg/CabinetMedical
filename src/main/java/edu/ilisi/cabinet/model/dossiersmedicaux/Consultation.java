@@ -21,6 +21,7 @@ public class Consultation {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id_consultation;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date_consultation;
 	private Integer duree;
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })

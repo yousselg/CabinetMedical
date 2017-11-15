@@ -20,12 +20,12 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private Long id_personne;
+	private Long idPersonne;
 	private String nom;
 	private String prenom;
 	private String email;

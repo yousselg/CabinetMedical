@@ -17,6 +17,7 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
  * @created 12-nov.-2017 01:01:55
  */
 @Entity
+@PrimaryKeyJoinColumn(referencedColumnName="idPersonne")
 public class Patient extends Personne implements Serializable{
 
 	@ManyToMany(mappedBy = "patients",cascade = CascadeType.PERSIST)

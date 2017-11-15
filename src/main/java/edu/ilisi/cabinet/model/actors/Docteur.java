@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import lombok.Data;
@@ -18,6 +19,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@PrimaryKeyJoinColumn(referencedColumnName="idPersonne")
 public class Docteur extends Personne {
 	public Docteur() {
 		consultations = new ArrayList<Consultation>();

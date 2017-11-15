@@ -20,7 +20,7 @@ public class DossierMedical {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id_dossier_medical;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date_creation;
 
 	@Column(name = "consultation_id")

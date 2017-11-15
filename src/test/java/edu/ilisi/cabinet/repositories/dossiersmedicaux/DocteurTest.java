@@ -40,7 +40,7 @@ public class DocteurTest {
 	public void save() {
 		
 		docteur = repo.save(docteur);
-		assertNotNull(docteur.getId_personne());
+		assertNotNull(docteur.getIdPersonne());
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class DocteurTest {
 	public void delete() {
 		System.out.println(docteur);
 		repo.delete(docteur);
-		assertNull(repo.findOne(docteur.getId_personne()));
+		assertNull(repo.findOne(docteur.getIdPersonne()));
 	}
 
 }
