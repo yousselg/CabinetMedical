@@ -24,7 +24,7 @@ public class DossierMedical {
 	private Date dateCreation;
 
 	@Column(name = "consultation_id")
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossierMedical",cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossierMedical",cascade = CascadeType.ALL)
 	private List<Consultation> consultations= new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL)

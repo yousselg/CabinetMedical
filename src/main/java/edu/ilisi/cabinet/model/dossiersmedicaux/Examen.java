@@ -27,7 +27,7 @@ public class Examen {
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private TypeExamen typeExamen;
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private Consultation consultation;
 
 }

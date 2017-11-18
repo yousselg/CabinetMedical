@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.repositories.dossiersmedicaux.DossierMedicalRepository;
 import edu.ilisi.cabinet.services.DossierMedicalService;
@@ -38,5 +39,15 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	@Override
 	public DossierMedical getDossierMedical(Long id) {
 		return dmRepository.findOne(id);
+	}
+
+	@Override
+	public void addConsultation(Long id,Consultation consultation) {
+		DossierMedical dossierMedical = getDossierMedical(id);
+		if(dossierMedical!=null){
+			consultation.setDossierMedical(dossierMedical);
+			dossierMedical.getConsultations().add(consultation);
+			updateDossierMedical(dossierMedical);
+		}
 	}
 }

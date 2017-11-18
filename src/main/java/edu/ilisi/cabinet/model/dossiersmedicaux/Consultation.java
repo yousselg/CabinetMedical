@@ -40,10 +40,10 @@ public class Consultation {
 	private List<Symptome> symptomes;
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Docteur docteur;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private Examen examen;
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private DossierMedical dossierMedical ;
 
 }

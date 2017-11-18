@@ -16,23 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ilisi.cabinet.model.actors.Patient;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
-import edu.ilisi.cabinet.services.ConsultationService;
 import edu.ilisi.cabinet.services.DossierMedicalService;
 
 @RequestMapping("/dossiermedical")
 @RestController
 @CrossOrigin
 public class DossierMedicalController {
+
 	@Autowired
-	private DossierMedicalService service;
-	@Autowired
-	private ConsultationService consultationService;
+	private DossierMedicalService dmService;
+
 	// @Autowired
 	// private PatientService patientService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DossierMedical>> listAll() {
-		List<DossierMedical> dossierMedicals = (List<DossierMedical>) service.getAllDossierMedicaux();
+		List<DossierMedical> dossierMedicals = (List<DossierMedical>) dmService.getAllDossierMedicaux();
 		if (dossierMedicals.isEmpty()) {
 			return new ResponseEntity<List<DossierMedical>>(HttpStatus.NO_CONTENT);
 		}
@@ -45,35 +44,34 @@ public class DossierMedicalController {
 		DossierMedical dossierMedical = new DossierMedical();
 		dossierMedical.setPatient(input);
 		dossierMedical.setDateCreation(new Date());
-		service.addDossieMecial(dossierMedical);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		dmService.addDossieMecial(dossierMedical);
+		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE)
 	public ResponseEntity<?> delete(@RequestBody DossierMedical dossierMedical) {
-		service.deleteDossierMedical(dossierMedical.getIdDossierMedical());
-		return null;
+		dmService.deleteDossierMedical(dossierMedical.getIdDossierMedical());
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	public ResponseEntity<?> update(@RequestBody DossierMedical dossierMedical) {
-		service.updateDossierMedical(dossierMedical);
-		return new ResponseEntity<>(HttpStatus.OK);
+		dmService.updateDossierMedical(dossierMedical);
+		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "/dossiermedical/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> get(@PathVariable Long id) {
-		service.getDossierMedical(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<DossierMedical>(dmService.getDossierMedical(id), HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "/dossiermedical/consultation", method = RequestMethod.GET)
-	public ResponseEntity<?> addConsultation(@PathVariable Consultation consultation) {
-		consultationService.addConsultation(consultation);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	public ResponseEntity<?> addConsultation(@PathVariable Long id, @RequestBody Consultation consultation) {
+		dmService.addConsultation(id, consultation);
+		return new ResponseEntity<>(dmService.getDossierMedical(id),HttpStatus.CREATED);
 
 	}
 }

@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.services;
 
+import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface DossierMedicalService {
 	public void updateDossierMedical(DossierMedical dossierMedical);
 
 	public DossierMedical getDossierMedical(Long id);
+	
+	public void addConsultation(Long id,Consultation consultation);
 }
