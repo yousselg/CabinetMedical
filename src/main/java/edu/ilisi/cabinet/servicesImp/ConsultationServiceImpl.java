@@ -1,13 +1,13 @@
 package edu.ilisi.cabinet.servicesImp;
 
-import com.sun.org.apache.regexp.internal.RE;
-import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.ConsultationRepository;
-import edu.ilisi.cabinet.services.ConsultationService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
+import edu.ilisi.cabinet.repositories.dossiersmedicaux.ConsultationRepository;
+import edu.ilisi.cabinet.services.ConsultationService;
 
 @Service
 public class ConsultationServiceImpl implements ConsultationService{

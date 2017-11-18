@@ -22,7 +22,7 @@ public class Patient extends Personne implements Serializable{
 
 	@ManyToMany(mappedBy = "patients",cascade = CascadeType.PERSIST)
 	private List<MaladieHerite> maladieHerites;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	private RefSex ref_sex;
 
 	public List<MaladieHerite> getMaladieHerites() {

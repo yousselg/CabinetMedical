@@ -37,7 +37,9 @@ public class CabinetMedApplication implements CommandLineRunner {
 	Patient patient;
 	DossierMedical dossierMedical;
 	Consultation consultation;
-	Docteur docteur = new Docteur();
+	Docteur docteur ;
+	Docteur docteurA = new Docteur();
+	Docteur docteurB = new Docteur();
 	RefSex homme = new RefSex();
 	RefSex femme = new RefSex();
 	Random random = new Random();
@@ -51,12 +53,20 @@ public class CabinetMedApplication implements CommandLineRunner {
 		homme = sexRepository.save(homme);
 		femme = sexRepository.save(femme);
 		/** Setting doctor */
-		docteur.setCIN("AA5289");
-		docteur.setEmail("docSami@email.com");
-		docteur.setNom("SAMADI");
-		docteur.setPrenom("Samad");
-		docteur.setTelephone("0661234589");
-		docteur = docteurRepository.save(docteur);
+		docteurA.setCIN("AA5289");
+		docteurA.setEmail("docSami@email.com");
+		docteurA.setNom("SAMADI");
+		docteurA.setPrenom("Samad");
+		docteurA.setTelephone("0661234589");
+		docteurA = docteurRepository.save(docteurA);
+		
+		docteurB.setCIN("AA5289");
+		docteurB.setEmail("docMourad@email.com");
+		docteurB.setNom("ALAMI");
+		docteurB.setPrenom("Mourad");
+		docteurB.setTelephone("0661234589");
+		docteurB = docteurRepository.save(docteurB);
+		
 		for (int i = 0; i < 30; i++) {
 
 			/** Creating Date attributes */
@@ -73,10 +83,10 @@ public class CabinetMedApplication implements CommandLineRunner {
 			patient.setPrenom("prenom" + i);
 
 			/** Creating and initiating Sex Reference */
-			/*if (random.nextInt() < 10)
+			if (random.nextInt() < 10)
 				patient.setRef_sex(homme);
-			else 
-				patient.setRef_sex(femme);*/
+			else
+				patient.setRef_sex(femme);
 			year = random.nextInt(2017 - 2010) + 2010;
 			patient.setTelephone(100000000 + random.nextInt(900000) + "");
 
@@ -84,6 +94,12 @@ public class CabinetMedApplication implements CommandLineRunner {
 			dossierMedical = new DossierMedical();
 			dossierMedical.setDate_creation(new Date(year + "/" + month + "/" + day));
 			dossierMedical.setPatient(patient);
+			
+			/**Selecting doctor*/
+			if (random.nextInt() < 10)
+				docteur = docteurA;
+			else
+				docteur = docteurB;
 			for (int j = 0; j < 6; j++) {
 				/** Creating and setting consultation */
 				month = random.nextInt(12 - 1) + 1;
@@ -91,7 +107,7 @@ public class CabinetMedApplication implements CommandLineRunner {
 				consultation = new Consultation();
 				consultation.setDate_consultation(new Date(year + "/" + month + "/" + day));
 				consultation.setDossiermedical(dossierMedical);
-				//consultation.setDocteur(docteur);
+				consultation.setDocteur(docteur);
 				dossierMedical.getConsultations().add(consultation);
 			}
 			medicalService.addDossieMecial(dossierMedical);

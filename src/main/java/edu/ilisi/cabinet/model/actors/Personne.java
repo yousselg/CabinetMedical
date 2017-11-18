@@ -12,6 +12,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import javax.persistence.EntityListeners;
+import javax.persistence.NamedQuery;
+import javax.persistence.Lob;
+import javax.persistence.Column;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedNativeQuery;
 
 /**
  * @author Home
@@ -27,6 +33,7 @@ public class Personne {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long idPersonne;
 	private String nom;
+	@Lob
 	private String prenom;
 	private String email;
 	private String CIN;
