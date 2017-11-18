@@ -8,16 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
-import javax.persistence.EntityListeners;
-import javax.persistence.NamedQuery;
-import javax.persistence.Lob;
-import javax.persistence.Column;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedNativeQuery;
 
 /**
  * @author Home
@@ -39,6 +34,6 @@ public class Personne {
 	private String CIN;
 	private String telephone;
 	@Temporal(TemporalType.DATE)
-	private Date date_naissance;
+	private Date dateNaissance;
 
 }

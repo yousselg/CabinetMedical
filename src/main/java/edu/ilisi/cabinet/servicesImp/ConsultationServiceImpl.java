@@ -13,31 +13,31 @@ import edu.ilisi.cabinet.services.ConsultationService;
 public class ConsultationServiceImpl implements ConsultationService{
 
     @Autowired
-    private ConsultationRepository Repository;
+    private ConsultationRepository consultationRepository;
 
     @Override
     public void addConsultation(Consultation consultation) {
-        Repository.save(consultation);
+    	consultationRepository.save(consultation);
     }
-
-    @Override
-    public List<Consultation> getAllDossierMedicaux() {
-        return(List<Consultation>) Repository.findAll();
-    }
-
-    @Override
-    public void deleteConsultation(Consultation consultation) {
-        Repository.delete(consultation);
-    }
-
+    
     @Override
     public void updateConsultation(Consultation consultation) {
-        Repository.save(consultation);
+    	consultationRepository.save(consultation);
     }
 
     @Override
     public Consultation getConsultation(Long id) {
-        return Repository.findOne((Long )id);
+        return consultationRepository.findOne(id);
     }
+
+	@Override
+	public List<Consultation> getAllConsultations() {
+		return (List<Consultation>) consultationRepository.findAll();
+	}
+
+	@Override
+	public void deleteConsultation(Long id) {
+		consultationRepository.delete(id);
+	}
 
 }

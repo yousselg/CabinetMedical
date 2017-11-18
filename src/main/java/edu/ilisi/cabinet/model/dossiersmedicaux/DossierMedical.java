@@ -19,12 +19,12 @@ import lombok.Data;
 public class DossierMedical {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_dossier_medical;
+	private Long idDossierMedical;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date_creation;
+	private Date dateCreation;
 
 	@Column(name = "consultation_id")
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossiermedical",cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "dossierMedical",cascade = CascadeType.PERSIST)
 	private List<Consultation> consultations= new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL)

@@ -2,6 +2,7 @@ package edu.ilisi.cabinet.model.dossiersmedicaux;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +21,12 @@ import lombok.Data;
 public class CertificatMedical {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_certificat_medical;
-	private Date date_debut;
-	private int nombre_jour;
+	private Long idCertificatMedical;
+	private Date dateDebut;
+	private int nombreJour;
 	private String observation;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.REFRESH)
 	private Consultation consultation;
 
 

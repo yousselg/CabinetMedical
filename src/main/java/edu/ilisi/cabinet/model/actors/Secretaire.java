@@ -3,6 +3,7 @@ package edu.ilisi.cabinet.model.actors;
 import javax.persistence.Entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Home
@@ -11,6 +12,7 @@ import lombok.Data;
  */
 @Data
 @Entity
+@EqualsAndHashCode(callSuper=false)
 public class Secretaire extends Personne {
 
 

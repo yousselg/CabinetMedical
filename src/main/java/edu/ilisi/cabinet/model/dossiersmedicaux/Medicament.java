@@ -2,11 +2,14 @@ package edu.ilisi.cabinet.model.dossiersmedicaux;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -15,16 +18,18 @@ import lombok.Data;
  * @version 1.0
  * @created 12-nov.-2017 01:01:55
  */
-@Data @Entity
+@Data
+@Entity
 public class Medicament {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_medicament;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idMedicament;
 	private String libelle;
 	private String description;
 
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.REFRESH)
 	private List<Prescription> prescriptions;
-
 
 }

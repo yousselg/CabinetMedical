@@ -3,6 +3,7 @@ package edu.ilisi.cabinet.model.dossiersmedicaux;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,16 +28,15 @@ public class Ordonnance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_ordonnance;
+	private Long idOrdonnance;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date_ordonnace;
-	@ManyToOne
+	private Date dateOrdonnace;
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	private Patient patient;
 	@OneToOne
 	private Consultation consultation;
-	
+
 	@OneToMany
 	private List<Prescription> prescriptions;
-
 
 }

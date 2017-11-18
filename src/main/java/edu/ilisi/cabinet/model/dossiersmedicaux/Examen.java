@@ -1,10 +1,13 @@
 package edu.ilisi.cabinet.model.dossiersmedicaux;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -17,12 +20,14 @@ import lombok.Data;
 @Entity
 public class Examen {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_examen;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idExamen;
 	private String description;
-	@ManyToOne
-	private TypeExamen type_Examen;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private TypeExamen typeExamen;
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.REFRESH)
 	private Consultation consultation;
 
 }

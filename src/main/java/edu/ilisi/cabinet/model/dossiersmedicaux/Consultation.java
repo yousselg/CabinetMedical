@@ -31,19 +31,19 @@ import lombok.Data;
 public class Consultation {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_consultation;
+	private Long idConsultation;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date_consultation;
+	private Date dateConsultation;
 	private Integer duree;
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idsymptome") )
+	@ManyToMany(cascade = { CascadeType.REFRESH})
+	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idSymptome") )
 	private List<Symptome> symptomes;
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Docteur docteur;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Examen examen;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
-	private DossierMedical dossiermedical ;
+	private DossierMedical dossierMedical ;
 
 }

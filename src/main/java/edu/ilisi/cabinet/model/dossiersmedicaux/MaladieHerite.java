@@ -1,11 +1,9 @@
 package edu.ilisi.cabinet.model.dossiersmedicaux;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
-import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
-
-import java.util.List;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Home
@@ -14,10 +12,8 @@ import java.util.List;
  */
 @Data
 @Entity
+@EqualsAndHashCode(callSuper=false)
 public class MaladieHerite extends Maladie {
 
-	private String source_maladie;
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "maladie_herite_patient", joinColumns = @JoinColumn(name = "idmaladieherite") , inverseJoinColumns = @JoinColumn(name = "idpatient") )
-	private List<Patient> patients;
+	private String sourceMaladie;
 }

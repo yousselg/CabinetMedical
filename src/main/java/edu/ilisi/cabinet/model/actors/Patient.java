@@ -1,13 +1,16 @@
 package edu.ilisi.cabinet.model.actors;
 
-import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Maladie;
-import edu.ilisi.cabinet.model.dossiersmedicaux.MaladieHerite;
-import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Home+
@@ -16,29 +19,17 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
  * @version 1.0
  * @created 12-nov.-2017 01:01:55
  */
+@Data
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName="idPersonne")
-public class Patient extends Personne implements Serializable{
+@EqualsAndHashCode(callSuper=false)
+public class Patient extends Personne{
 
 	@ManyToMany(mappedBy = "patients",cascade = CascadeType.PERSIST)
-	private List<MaladieHerite> maladieHerites;
+	private List<Maladie> maladies;
 	@ManyToOne(cascade = CascadeType.REFRESH)
-	private RefSex ref_sex;
+	private RefSex refSex;
 
-	public List<MaladieHerite> getMaladieHerites() {
-		return maladieHerites;
-	}
 
-	public void setMaladieHerites(List<MaladieHerite> maladieHerites) {
-		this.maladieHerites = maladieHerites;
-	}
-
-	public RefSex getRef_sex() {
-		return ref_sex;
-	}
-
-	public void setRef_sex(RefSex ref_sex) {
-		this.ref_sex = ref_sex;
-	}
 
 }
