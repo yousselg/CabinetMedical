@@ -4,9 +4,10 @@
  */
 package edu.ilisi.cabinet.repositories.dossiersmedicaux;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-import org.hamcrest.core.IsNot;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class DocteurTest {
 	@Autowired
 	private DocteurRepository repo;
 	private Docteur docteur = new Docteur();
-	private Long idDocteur = null ;
 
 	/**
 	 * @throws java.lang.Exception
