@@ -1,7 +1,8 @@
-package edu.ilisi.cabinet.controllers;
+package edu.ilisi.cabinet.controllers.actors;
 
 import edu.ilisi.cabinet.model.actors.RefSex;
-import edu.ilisi.cabinet.services.SexService;
+import edu.ilisi.cabinet.services.actors.SexService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class SexController {
     private SexService service;
 
     @RequestMapping( method = RequestMethod.GET)
-    public ResponseEntity<List<RefSex>> getAll() {
+    public ResponseEntity<List<RefSex>> getAllGenders() {
 
         List<RefSex> genders = (List<RefSex>) service.getlistofSex();
         if(genders.isEmpty()){
@@ -27,7 +28,7 @@ public class SexController {
     }
 
     @RequestMapping(method = RequestMethod.POST )
-    public ResponseEntity<?> add(@RequestBody RefSex input) {
+    public ResponseEntity<?> addGender(@RequestBody RefSex input) {
         service.addgender(input);
         return new ResponseEntity<>(HttpStatus.CREATED);
 

@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.repositories.dossiersmedicaux;
+package edu.ilisi.cabinet.repositories.actors;
 
 import edu.ilisi.cabinet.model.actors.RefSex;
 import org.springframework.data.repository.CrudRepository;

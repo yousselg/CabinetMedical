@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.ilisi.cabinet.model.actors.Docteur;
+import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
 
 /**
  * @author Home

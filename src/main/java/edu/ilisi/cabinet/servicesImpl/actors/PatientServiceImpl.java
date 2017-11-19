@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.servicesImp;
+package edu.ilisi.cabinet.servicesImpl.actors;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ilisi.cabinet.model.actors.Patient;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.PatientRepository;
-import edu.ilisi.cabinet.services.PatientService;
+import edu.ilisi.cabinet.repositories.actors.PatientRepository;
+import edu.ilisi.cabinet.services.actors.PatientService;
 
 @Service
 

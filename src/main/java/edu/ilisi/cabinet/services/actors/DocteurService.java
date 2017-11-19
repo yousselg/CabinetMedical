@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.services;
+package edu.ilisi.cabinet.services.actors;
 
 import java.util.List;
 

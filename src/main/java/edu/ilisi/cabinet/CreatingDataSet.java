@@ -15,9 +15,9 @@ import edu.ilisi.cabinet.model.actors.RefSex;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.DocteurRepository;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.SexRepository;
-import edu.ilisi.cabinet.services.DossierMedicalService;
+import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
+import edu.ilisi.cabinet.repositories.actors.SexRepository;
+import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 
 @Component
 @Profile(value={"create","create-drop"})

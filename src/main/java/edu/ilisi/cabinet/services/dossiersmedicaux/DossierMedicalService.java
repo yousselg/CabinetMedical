@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.services;
+package edu.ilisi.cabinet.services.dossiersmedicaux;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;

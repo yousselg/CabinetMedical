@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.servicesImp;
+package edu.ilisi.cabinet.servicesImpl.dossiermedicaux;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.repositories.dossiersmedicaux.ConsultationRepository;
-import edu.ilisi.cabinet.services.ConsultationService;
+import edu.ilisi.cabinet.services.dossiersmedicaux.ConsultationService;
 
 @Service
 public class ConsultationServiceImpl implements ConsultationService{

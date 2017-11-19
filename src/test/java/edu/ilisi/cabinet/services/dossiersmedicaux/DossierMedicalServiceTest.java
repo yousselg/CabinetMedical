@@ -1,9 +1,8 @@
 package edu.ilisi.cabinet.services.dossiersmedicaux;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.Date;
-import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
-import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
-import edu.ilisi.cabinet.services.DossierMedicalService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
