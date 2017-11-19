@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.servicesImpl.dossiermedicaux;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	public void addConsultation(Long id,Consultation consultation) {
 		DossierMedical dossierMedical = getDossierMedical(id);
 		if(dossierMedical!=null){
+			consultation.setDateConsultation(new Date());
 			consultation.setDossierMedical(dossierMedical);
 			dossierMedical.getConsultations().add(consultation);
 			updateDossierMedical(dossierMedical);
