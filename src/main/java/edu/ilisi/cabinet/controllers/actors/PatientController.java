@@ -48,7 +48,7 @@ public class PatientController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getPatientById(@PathVariable Long id) {
 		Patient patient = patientService.getPatient(id);
-		if (patient != null) {
+		if (patient == null) {
 			return new ResponseEntity<List<Patient>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Patient>(patient, HttpStatus.OK);

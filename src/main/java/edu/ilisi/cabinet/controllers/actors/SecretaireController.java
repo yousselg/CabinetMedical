@@ -48,7 +48,7 @@ public class SecretaireController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getSecretaireById(@PathVariable Long id) {
 		Secretaire secretaire = secretaireService.getSecretaire(id);
-		if (secretaire != null) {
+		if (secretaire == null) {
 			return new ResponseEntity<List<Secretaire>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Secretaire>(secretaire, HttpStatus.OK);

@@ -27,9 +27,6 @@ public class DossierMedicalController {
 	@Autowired
 	private DossierMedicalService dmService;
 
-	// @Autowired
-	// private PatientService patientService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DossierMedical>> getAllDossiersMedicaux() {
 		List<DossierMedical> dossierMedicals = (List<DossierMedical>) dmService.getAllDossierMedicaux();
@@ -49,9 +46,9 @@ public class DossierMedicalController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteDossierMedical(@RequestBody DossierMedical dossierMedical) {
-		dmService.deleteDossierMedical(dossierMedical.getIdDossierMedical());
+	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteDossierMedical(@PathVariable Long id) {
+		dmService.deleteDossierMedical(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -66,7 +63,7 @@ public class DossierMedicalController {
 	public ResponseEntity<?> getDossierMedicalById(@PathVariable Long id) {
 		
 		DossierMedical dossierMedical = dmService.getDossierMedical(id);
-		if (dossierMedical != null) {
+		if (dossierMedical == null) {
 			return new ResponseEntity<DossierMedical>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.OK);

@@ -23,14 +23,7 @@ public class DocteurController {
 	@Autowired
 	private DocteurService docteurService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Docteur>> listAllDocteurs() {
-		List<Docteur> docteurs = (List<Docteur>) docteurService.getAllDocteurs();
-		if (docteurs.isEmpty()) {
-			return new ResponseEntity<List<Docteur>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<Docteur>>(docteurs, HttpStatus.OK);
-	}
+	
 
 	@RequestMapping(method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteDocteur(@PathVariable Long id) {
@@ -48,11 +41,20 @@ public class DocteurController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getDocteurById(@PathVariable Long id) {
 		Docteur docteur = docteurService.getDocteur(id);
-		if (docteur != null) {
+		if (docteur == null) {
 			return new ResponseEntity<List<Docteur>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Docteur>(docteur, HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value="",method = RequestMethod.GET)
+	public ResponseEntity<List<Docteur>> listAllDocteurs() {
+		List<Docteur> docteurs = (List<Docteur>) docteurService.getAllDocteurs();
+		if (docteurs.isEmpty()) {
+			return new ResponseEntity<List<Docteur>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Docteur>>(docteurs, HttpStatus.OK);
 	}
 	
 }
