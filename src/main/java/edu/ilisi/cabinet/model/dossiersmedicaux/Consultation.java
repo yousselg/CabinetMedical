@@ -35,7 +35,9 @@ public class Consultation {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateConsultation;
 	private Integer duree;
-	@ManyToMany(cascade = { CascadeType.REFRESH})
+	private Float poid;
+	private Float temperature;
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idSymptome") )
 	private List<Symptome> symptomes;
 	@ManyToOne(cascade = CascadeType.REFRESH)

@@ -114,6 +114,8 @@ public class CreatingDataSet implements CommandLineRunner {
 				consultation.setDossierMedical(dossierMedical);
 				consultation.setDocteur(docteur);
 				consultation.setDuree(30);
+				consultation.setPoid(random.nextFloat()*(120 - 40) + 40);
+				consultation.setTemperature(random.nextFloat()*(40 - 30) + 30);
 
 				if (month < 6) {
 					examen = new Examen();

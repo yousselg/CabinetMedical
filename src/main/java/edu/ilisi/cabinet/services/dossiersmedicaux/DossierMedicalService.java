@@ -13,9 +13,9 @@ public interface DossierMedicalService {
 
 	public void deleteDossierMedical(Long id);
 
-	public void updateDossierMedical(DossierMedical dossierMedical);
+	public DossierMedical updateDossierMedical(DossierMedical dossierMedical);
 
 	public DossierMedical getDossierMedical(Long id);
 	
-	public void addConsultation(Long id,Consultation consultation);
+	public Long addConsultation(Long id,Consultation consultation);
 }

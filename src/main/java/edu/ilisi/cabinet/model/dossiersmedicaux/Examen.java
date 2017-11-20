@@ -24,7 +24,7 @@ public class Examen {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idExamen;
 	private String description;
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private TypeExamen typeExamen;
 	@JsonIgnore
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
+import edu.ilisi.cabinet.repositories.dossiersmedicaux.ConsultationRepository;
 import edu.ilisi.cabinet.repositories.dossiersmedicaux.DossierMedicalRepository;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 
@@ -16,6 +17,9 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 
     @Autowired
     private DossierMedicalRepository dmRepository;
+    
+    @Autowired
+    private ConsultationRepository cnRepository;
 
     @Override
     public void addDossieMecial(DossierMedical dossierMedical) {
@@ -33,8 +37,8 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	}
 
 	@Override
-	public void updateDossierMedical(DossierMedical dossierMedical) {
-		dmRepository.save(dossierMedical);
+	public DossierMedical updateDossierMedical(DossierMedical dossierMedical) {
+		return dmRepository.save(dossierMedical);
 	}
 
 	@Override
@@ -43,13 +47,14 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 	}
 
 	@Override
-	public void addConsultation(Long id,Consultation consultation) {
+	public Long addConsultation(Long id,Consultation consultation) {
 		DossierMedical dossierMedical = getDossierMedical(id);
 		if(dossierMedical!=null){
 			consultation.setDateConsultation(new Date());
 			consultation.setDossierMedical(dossierMedical);
 			dossierMedical.getConsultations().add(consultation);
-			updateDossierMedical(dossierMedical);
+			dossierMedical = updateDossierMedical(dossierMedical);
 		}
+		return cnRepository.findTopByOrderByDateConsultationDesc().getIdConsultation();
 	}
 }
