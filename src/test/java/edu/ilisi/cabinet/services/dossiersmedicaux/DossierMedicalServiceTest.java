@@ -1,6 +1,6 @@
 package edu.ilisi.cabinet.services.dossiersmedicaux;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
