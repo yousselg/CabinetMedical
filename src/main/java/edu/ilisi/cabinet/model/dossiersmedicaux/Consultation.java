@@ -13,12 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.ilisi.cabinet.model.actors.Docteur;
+import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
 
 /**
@@ -44,6 +46,8 @@ public class Consultation {
 	private Docteur docteur;
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private Examen examen;
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Ordonnance ordonnance;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private DossierMedical dossierMedical ;

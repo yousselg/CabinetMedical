@@ -27,7 +27,7 @@ public class Prescription {
 	private Integer combien;
 	@Lob
 	private String description;
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Medicament medicament;
 
 }

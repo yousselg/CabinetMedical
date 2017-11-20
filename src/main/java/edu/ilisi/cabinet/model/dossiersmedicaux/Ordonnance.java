@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
 
@@ -31,12 +33,13 @@ public class Ordonnance {
 	private Long idOrdonnance;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOrdonnace;
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Patient patient;
-	@OneToOne
+	@JsonIgnore
+	@OneToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private Consultation consultation;
 
-	@OneToMany
+	@OneToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Prescription> prescriptions;
 
 }

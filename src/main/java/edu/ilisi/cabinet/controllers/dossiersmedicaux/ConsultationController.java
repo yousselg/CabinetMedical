@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
+import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
 import edu.ilisi.cabinet.services.dossiersmedicaux.ConsultationService;
 
 @RequestMapping("/consultation")
@@ -48,10 +49,19 @@ public class ConsultationController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getConsultationById(@PathVariable Long id) {
 		Consultation consultation = consultationService.getConsultation(id);
-		if (consultation == null) {
+		if (consultation == null)
 			return new ResponseEntity<Consultation>(HttpStatus.NO_CONTENT);
-		}
 		return new ResponseEntity<Consultation>(consultation, HttpStatus.OK);
 	}
-	
+
+	@RequestMapping(value = "/{id}/ordonnance", method = RequestMethod.POST)
+	public ResponseEntity<Long> addConsultationToDossierMedical(@PathVariable Long id,
+			@RequestBody Ordonnance ordonnance) {
+		Long idConsulLong = consultationService.addOrdonnace(id, ordonnance);
+		if (idConsulLong != null)
+			return new ResponseEntity<Long>(idConsulLong, HttpStatus.CREATED);
+		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
+
+	}
+
 }

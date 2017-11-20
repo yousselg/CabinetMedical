@@ -72,7 +72,10 @@ public class DossierMedicalController {
 
 	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.POST)
 	public ResponseEntity<Long> addConsultationToDossierMedical(@PathVariable Long id, @RequestBody Consultation consultation) {
-		return new ResponseEntity<Long>(dmService.addConsultation(id, consultation),HttpStatus.CREATED);
+		Long idConsulLong= dmService.addConsultation(id, consultation);
+		if(idConsulLong!=null)
+		return new ResponseEntity<Long>(idConsulLong,HttpStatus.CREATED);
+		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
 
 	}
 	
