@@ -20,7 +20,6 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.ilisi.cabinet.model.actors.Docteur;
-import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
 
 /**

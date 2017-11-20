@@ -32,7 +32,7 @@ public class SymptomeController {
 		return new ResponseEntity<List<Symptome>>(symptomes, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteSymptome(@PathVariable Long id) {
 		symptomeService.deleteSymptome(id);
 		return new ResponseEntity<>(HttpStatus.OK);

@@ -33,7 +33,7 @@ public class ConsultationController {
 		return new ResponseEntity<List<Consultation>>(consultations, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteConsultation(@PathVariable Long id) {
 		consultationService.deleteConsultation(id);
 		return new ResponseEntity<>(HttpStatus.OK);
