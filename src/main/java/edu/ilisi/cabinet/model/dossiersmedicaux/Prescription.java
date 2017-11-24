@@ -1,7 +1,5 @@
 package edu.ilisi.cabinet.model.dossiersmedicaux;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,11 +21,13 @@ public class Prescription {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idPrescription;
 	private Integer nbreFois;
-	private Date quand;
-	private Integer combien;
+	private String quand;
+	private Integer quantite;
+	private String periode;
 	@Lob
 	private String description;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Medicament medicament;
+	
 
 }

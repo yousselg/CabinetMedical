@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -16,7 +15,6 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
 
 /**
@@ -33,8 +31,6 @@ public class Ordonnance {
 	private Long idOrdonnance;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOrdonnace;
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Patient patient;
 	@JsonIgnore
 	@OneToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private Consultation consultation;
