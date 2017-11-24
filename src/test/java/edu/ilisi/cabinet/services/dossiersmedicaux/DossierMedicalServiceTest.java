@@ -35,7 +35,6 @@ public class DossierMedicalServiceTest {
 		dossier = dossierService.getDossierMedical(5L);
 		
 		consultation = new Consultation();
-		consultation.setDuree(45);
 		consultation.setDateConsultation(new Date());
 		consultation.setDossierMedical(dossier);
 		

@@ -35,7 +35,6 @@ public class Consultation {
 	private Long idConsultation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateConsultation;
-	private Integer duree;
 	private Float poid;
 	private Float temperature;
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
@@ -43,12 +42,13 @@ public class Consultation {
 	private List<Symptome> symptomes;
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Docteur docteur;
+	@JsonIgnore
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private Examen examen;
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Ordonnance ordonnance;
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(fetch = FetchType.LAZY,cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private DossierMedical dossierMedical ;
 
 }

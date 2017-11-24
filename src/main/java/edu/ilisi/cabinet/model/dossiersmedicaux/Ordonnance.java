@@ -32,7 +32,7 @@ public class Ordonnance {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOrdonnace;
 	@JsonIgnore
-	@OneToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToOne(cascade={CascadeType.REFRESH})
 	private Consultation consultation;
 
 	@OneToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST})

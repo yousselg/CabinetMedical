@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +27,7 @@ public class Docteur extends Personne {
 		consultations = new ArrayList<Consultation>();
 	}
 
+	@JsonIgnore
 	@OneToMany
 	private List<Consultation> consultations;
 }

@@ -54,6 +54,7 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 			consultation.setDossierMedical(dossierMedical);
 			dossierMedical.getConsultations().add(consultation);
 			dossierMedical = updateDossierMedical(dossierMedical);
+			System.err.println("OOOOOOOOOOOOOOOOOOOOOOOOHHHHHH");
 			return cnRepository.findTopByOrderByDateConsultationDesc().getIdConsultation();
 		}
 		return null;
