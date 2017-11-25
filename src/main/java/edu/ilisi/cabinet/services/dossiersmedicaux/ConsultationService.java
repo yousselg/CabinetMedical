@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.services.dossiersmedicaux;
 
+import java.util.Date;
 import java.util.List;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
@@ -18,4 +19,6 @@ public interface ConsultationService {
 	public Consultation getConsultation(Long id);
 	
 	public Long addOrdonnace(Long id,Ordonnance ordonnance);
+
+	public List<Consultation>getConsultationsByYear(Date d , Date f);
 }

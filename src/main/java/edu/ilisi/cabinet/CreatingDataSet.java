@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
+import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
+import edu.ilisi.cabinet.repositories.dossiersmedicaux.DepenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -32,6 +34,8 @@ public class CreatingDataSet implements CommandLineRunner {
 	@Autowired
 	private SexRepository sexRepository;
 
+	@Autowired
+	DepenseRepository depenseRepository;
 	Patient patient;
 	DossierMedical dossierMedical;
 	Consultation consultation;
@@ -44,7 +48,7 @@ public class CreatingDataSet implements CommandLineRunner {
 	RefSex homme = new RefSex();
 	RefSex femme = new RefSex();
 	Random random = new Random();
-
+	Depense depense = null;
 	@SuppressWarnings("deprecation")
 	@Override
 	public void run(String... arg0) throws Exception {		
@@ -86,13 +90,18 @@ public class CreatingDataSet implements CommandLineRunner {
 			patient.setEmail("email" + i + i + "@mail.com");
 			patient.setNom("nom" + i);
 			patient.setPrenom("prenom" + i);
+			depense =new Depense();
+			depense.setDate(new Date("2017/"+month+"/"+day));
+			depense.setLibelle("Depense "+i);
+			depense.setMontant(random.nextFloat()*(400 - 250) + 100);
+			depenseRepository.save(depense);
 
 			/** Creating and initiating Sex Reference */
 			if (random.nextInt() < 10)
 				patient.setRefSex(homme);
 			else
 				patient.setRefSex(femme);
-			year = random.nextInt(2017 - 2010) + 2010;
+			year = 2017;
 			patient.setTelephone(100000000 + random.nextInt(900000) + "");
 
 			/** Creating and setting Dossier medical */
@@ -115,7 +124,7 @@ public class CreatingDataSet implements CommandLineRunner {
 				consultation.setDocteur(docteur);
 				consultation.setPoid(random.nextFloat()*(120 - 40) + 40);
 				consultation.setTemperature(random.nextFloat()*(40 - 30) + 30);
-
+				consultation.setMontant_payee(random.nextFloat()*(500 - 250) + 200);
 				if (month < 6) {
 					examen = new Examen();
 					examen.setConsultation(consultation);

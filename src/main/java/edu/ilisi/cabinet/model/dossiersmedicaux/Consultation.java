@@ -37,6 +37,7 @@ public class Consultation {
 	private Date dateConsultation;
 	private Float poid;
 	private Float temperature;
+	private Float montant_payee;
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idSymptome") )
 	private List<Symptome> symptomes;
@@ -50,5 +51,7 @@ public class Consultation {
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY,cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private DossierMedical dossierMedical ;
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private TypeConsultation typeConsultation;
 
 }

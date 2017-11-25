@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.servicesImpl.dossiermedicaux;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,8 @@ public class ConsultationServiceImpl implements ConsultationService{
 		return null;
 	}
 
+	@Override
+	public List<Consultation> getConsultationsByYear(Date d, Date f) {
+		return consultationRepository.findByDateConsultationBetween(d,f);
+	}
 }
