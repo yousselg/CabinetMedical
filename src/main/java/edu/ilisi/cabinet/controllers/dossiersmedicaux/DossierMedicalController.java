@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ilisi.cabinet.model.actors.Patient;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
+import edu.ilisi.cabinet.services.dossiersmedicaux.ConsultationService;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RequestMapping("/dossiermedical")
 @RestController
@@ -26,6 +28,9 @@ public class DossierMedicalController {
 
 	@Autowired
 	private DossierMedicalService dmService;
+	
+	@Autowired
+	private ConsultationService cnService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DossierMedical>> getAllDossiersMedicaux() {
@@ -76,6 +81,15 @@ public class DossierMedicalController {
 		if(idConsulLong!=null)
 		return new ResponseEntity<Long>(idConsulLong,HttpStatus.CREATED);
 		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
+
+	}
+	
+	@ApiIgnore
+	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.PUT)
+	public ResponseEntity<Consultation> updateConsultatiobnDossierMedical(@PathVariable DossierMedical id, @RequestBody Consultation consultation) {
+		consultation.setDossierMedical(id);
+		consultation = cnService.updateConsultation(consultation);
+		return new ResponseEntity<Consultation>(consultation,HttpStatus.CREATED);
 
 	}
 	

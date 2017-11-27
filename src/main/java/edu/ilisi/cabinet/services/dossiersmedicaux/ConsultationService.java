@@ -21,4 +21,5 @@ public interface ConsultationService {
 	public Long addOrdonnace(Long id,Ordonnance ordonnance);
 
 	public List<Consultation>getConsultationsByYear(Date d , Date f);
+
 }

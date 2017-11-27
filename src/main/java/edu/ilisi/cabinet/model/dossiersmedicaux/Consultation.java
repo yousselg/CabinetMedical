@@ -49,7 +49,7 @@ public class Consultation {
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Ordonnance ordonnance;
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY,cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	private DossierMedical dossierMedical ;
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private TypeConsultation typeConsultation;
