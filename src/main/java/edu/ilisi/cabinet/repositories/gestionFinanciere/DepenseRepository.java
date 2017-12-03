@@ -1,11 +1,11 @@
-package edu.ilisi.cabinet.repositories.dossiersmedicaux;
+package edu.ilisi.cabinet.repositories.gestionFinanciere;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
+import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
 
 public interface DepenseRepository extends CrudRepository<Depense,Long>{
    // public  List<Depense> getDepensesByDateYear(int year);

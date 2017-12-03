@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import edu.ilisi.cabinet.model.actors.Patient;
 import lombok.Data;
 
@@ -32,6 +34,7 @@ public class Maladie {
 	private String libele;
 	private String description;
 
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "maladie_patient", joinColumns = @JoinColumn(name = "idmaladie") , inverseJoinColumns = @JoinColumn(name = "idpatient") )
 	private List<Patient> patients;

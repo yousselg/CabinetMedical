@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
-import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.DepenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -17,8 +15,10 @@ import edu.ilisi.cabinet.model.actors.RefSex;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
+import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
 import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
 import edu.ilisi.cabinet.repositories.actors.SexRepository;
+import edu.ilisi.cabinet.repositories.gestionFinanciere.DepenseRepository;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 
 @Component

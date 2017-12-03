@@ -1,9 +1,9 @@
-package edu.ilisi.cabinet.services.dossiersmedicaux;
-
-import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
+package edu.ilisi.cabinet.services.gestionFinanciere;
 
 import java.util.Date;
 import java.util.List;
+
+import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
 
 public interface DepenseService {
     public void addDepense(Depense Depense);

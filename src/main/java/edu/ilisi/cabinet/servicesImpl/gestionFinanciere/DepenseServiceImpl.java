@@ -1,8 +1,9 @@
-package edu.ilisi.cabinet.servicesImpl.dossiermedicaux;
+package edu.ilisi.cabinet.servicesImpl.gestionFinanciere;
 
-import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
-import edu.ilisi.cabinet.repositories.dossiersmedicaux.DepenseRepository;
-import edu.ilisi.cabinet.services.dossiersmedicaux.DepenseService;
+import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
+import edu.ilisi.cabinet.repositories.gestionFinanciere.DepenseRepository;
+import edu.ilisi.cabinet.services.gestionFinanciere.DepenseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

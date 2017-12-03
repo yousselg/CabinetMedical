@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
-import edu.ilisi.cabinet.model.dossiersmedicaux.Depense;
+import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
 import edu.ilisi.cabinet.services.dossiersmedicaux.ConsultationService;
-import edu.ilisi.cabinet.services.dossiersmedicaux.DepenseService;
+import edu.ilisi.cabinet.services.gestionFinanciere.DepenseService;
 
 @RequestMapping("/report")
 @RestController
@@ -28,16 +28,17 @@ public class ReportingController {
     private DepenseService depenseService;
     @Autowired
     private ConsultationService consultationService;
+    @SuppressWarnings("deprecation")
     @RequestMapping(value = "/{year}",method = RequestMethod.GET)
     public ResponseEntity<?> getRecetteAndDepense(@PathVariable int year) {
-        List<Depense>depenses= depenseService.getDepensesByDate(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/30") );
+		List<Depense>depenses= depenseService.getDepensesByDate(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/30") );
         List<Consultation> consultations = consultationService.getConsultationsByYear(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/30"));
         int [] deps = new int[12];
         int [] rec = new int[12];
         int [] profit = new int[12];
         Arrays.fill(deps,0);
         Arrays.fill(rec,0);
-        Iterator it = depenses.iterator();
+        Iterator<?> it = depenses.iterator();
         Depense dep;
         while (it.hasNext()){
             dep=(Depense) it.next();

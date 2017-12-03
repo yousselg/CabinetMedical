@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.model.dossiersmedicaux;
+package edu.ilisi.cabinet.model.gestionFinanciere;
 
 import lombok.Data;
 
