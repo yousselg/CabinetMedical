@@ -55,5 +55,6 @@ public class Consultation {
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.REMOVE })
 	@JoinTable(name = "Consultation_maladie", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idMaladie") )
 	private List<Maladie> maladies;
+	private Integer etat = 0;
 
 }

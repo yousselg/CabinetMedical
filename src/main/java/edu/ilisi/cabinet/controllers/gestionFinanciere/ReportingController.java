@@ -31,30 +31,38 @@ public class ReportingController {
     @SuppressWarnings("deprecation")
     @RequestMapping(value = "/{year}",method = RequestMethod.GET)
     public ResponseEntity<?> getRecetteAndDepense(@PathVariable int year) {
-		List<Depense>depenses= depenseService.getDepensesByDate(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/30") );
-        List<Consultation> consultations = consultationService.getConsultationsByYear(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/30"));
+		List<Depense>depenses= depenseService.getDepensesByDate(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/31") );
+        List<Consultation> consultations = consultationService.getConsultationsByYear(new Date(year + "/01"+"/01") ,new Date(year + "/12"+"/31"));
         int [] deps = new int[12];
         int [] rec = new int[12];
         int [] profit = new int[12];
+        int [] pie = new int[3];
         Arrays.fill(deps,0);
         Arrays.fill(rec,0);
+        Arrays.fill(pie,0);
         Iterator<?> it = depenses.iterator();
         Depense dep;
         while (it.hasNext()){
             dep=(Depense) it.next();
             deps[Integer.parseInt(dep.getDate().toString().split("-")[1])-1]+=dep.getMontant();
+            pie[1]+=dep.getMontant();
         }
          it = consultations.iterator();
         Consultation c;
         while (it.hasNext()){
             c=(Consultation) it.next();
             rec[Integer.parseInt(c.getDateConsultation().toString().split("-")[1])-1]+=c.getMontant_payee();
+            pie[0]+=c.getMontant_payee();
         }
-        for(int i = 0 ; i< 12 ; i++) profit[i] = rec[i] - deps[i];
+        for(int i = 0 ; i< 12 ; i++) {
+            profit[i] = rec[i] - deps[i];
+            pie[2]+=profit[i];
+        }
         List<int[]> data = new ArrayList<>();
         data.add(0,rec);
         data.add(1,deps);
         data.add(2,profit);
+        data.add(3,pie);
         return new ResponseEntity<List<?>>(data, HttpStatus.OK);
     }
 }
