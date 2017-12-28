@@ -76,6 +76,8 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurB.setDateNaissance(new Date(1961, 1, 26));
 		docteurB = docteurRepository.save(docteurB);
 
+		Date dateConsultation = null;
+
 		for (int i = 0; i < 30; i++) {
 
 			/** Creating Date attributes */
@@ -118,8 +120,13 @@ public class CreatingDataSet implements CommandLineRunner {
 				/** Creating and setting consultation */
 				month = random.nextInt(12 - 1) + 1;
 				day = random.nextInt(30 - 1) + 1;
+				dateConsultation = new Date(year + "/" + month + "/" + day);
+
+				/**Creating Rendez-vous*/
+
+
 				consultation = new Consultation();
-				consultation.setDateConsultation(new Date(year + "/" + month + "/" + day));
+				consultation.setDateConsultation(dateConsultation);
 				consultation.setDossierMedical(dossierMedical);
 				consultation.setDocteur(docteur);
 				consultation.setPoid(random.nextFloat()*(120 - 40) + 40);
