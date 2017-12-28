@@ -28,7 +28,7 @@ public class DossierMedicalController {
 
 	@Autowired
 	private DossierMedicalService dmService;
-	
+
 	@Autowired
 	private ConsultationService cnService;
 
@@ -51,7 +51,7 @@ public class DossierMedicalController {
 
 	}
 
-	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteDossierMedical(@PathVariable Long id) {
 		dmService.deleteDossierMedical(id);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -66,7 +66,7 @@ public class DossierMedicalController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getDossierMedicalById(@PathVariable Long id) {
-		
+
 		DossierMedical dossierMedical = dmService.getDossierMedical(id);
 		if (dossierMedical == null) {
 			return new ResponseEntity<DossierMedical>(HttpStatus.NO_CONTENT);
@@ -76,23 +76,25 @@ public class DossierMedicalController {
 	}
 
 	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.POST)
-	public ResponseEntity<Long> addConsultationToDossierMedical(@PathVariable Long id, @RequestBody Consultation consultation) {
-		Long idConsulLong= dmService.addConsultation(id, consultation);
-		if(idConsulLong!=null)
-		return new ResponseEntity<Long>(idConsulLong,HttpStatus.CREATED);
+	public ResponseEntity<Long> addConsultationToDossierMedical(@PathVariable Long id,
+			@RequestBody Consultation consultation) {
+		Long idConsulLong = dmService.addConsultation(id, consultation);
+		if (idConsulLong != null)
+			return new ResponseEntity<Long>(idConsulLong, HttpStatus.CREATED);
 		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
 
 	}
-	
+
 	@ApiIgnore
 	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.PUT)
-	public ResponseEntity<Consultation> updateConsultatiobnDossierMedical(@PathVariable DossierMedical id, @RequestBody Consultation consultation) {
+	public ResponseEntity<Consultation> updateConsultatiobnDossierMedical(@PathVariable DossierMedical id,
+			@RequestBody Consultation consultation) {
 		consultation.setDossierMedical(id);
 		consultation = cnService.updateConsultation(consultation);
-		return new ResponseEntity<Consultation>(consultation,HttpStatus.CREATED);
+		return new ResponseEntity<Consultation>(consultation, HttpStatus.CREATED);
 
 	}
-	
+
 	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.GET)
 	public ResponseEntity<?> getConsultationsOfDossierMedical(@PathVariable Long id) {
 		List<Consultation> consultations = dmService.getDossierMedical(id).getConsultations();
@@ -101,11 +103,12 @@ public class DossierMedicalController {
 		}
 		return new ResponseEntity<List<Consultation>>(consultations, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/{id}/consultation/{idConsultation}", method = RequestMethod.GET)
-	public ResponseEntity<?> getDetailsConsultationsOfDossierMedical(@PathVariable Long id,@PathVariable Long idConsultation) {
-		 HttpHeaders headers = new HttpHeaders();
-	     headers.add("Location", "/consultation/"+idConsultation);
-	     return new ResponseEntity<Consultation>(headers, HttpStatus.MOVED_PERMANENTLY);
+	public ResponseEntity<?> getDetailsConsultationsOfDossierMedical(@PathVariable Long id,
+			@PathVariable Long idConsultation) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Location", "/consultation/" + idConsultation);
+		return new ResponseEntity<Consultation>(headers, HttpStatus.MOVED_PERMANENTLY);
 	}
 }

@@ -1,6 +1,8 @@
 package edu.ilisi.cabinet;
 
+import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -16,13 +18,15 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
 import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
+import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
 import edu.ilisi.cabinet.repositories.actors.SexRepository;
 import edu.ilisi.cabinet.repositories.gestionFinanciere.DepenseRepository;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
+import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
 
 @Component
-@Profile(value={"create","create-drop"})
+@Profile(value = { "create", "create-drop" })
 public class CreatingDataSet implements CommandLineRunner {
 
 	@Autowired
@@ -36,6 +40,10 @@ public class CreatingDataSet implements CommandLineRunner {
 
 	@Autowired
 	DepenseRepository depenseRepository;
+
+	@Autowired
+	RendezVousService rendezvousService;
+
 	Patient patient;
 	DossierMedical dossierMedical;
 	Consultation consultation;
@@ -43,18 +51,20 @@ public class CreatingDataSet implements CommandLineRunner {
 	Docteur docteurA = new Docteur();
 	Docteur docteurB = new Docteur();
 	Examen examen;
+	Date dateConsultation = null;
+	RendezVous rendezVous;
+	List<Consultation> consultations;
 	int year, month, day;
 
 	RefSex homme = new RefSex();
 	RefSex femme = new RefSex();
 	Random random = new Random();
 	Depense depense = null;
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public void run(String... arg0) throws Exception {		
-		
-		
-		
+	public void run(String... arg0) throws Exception {
+
 		homme.setLibelle("Homme");
 		femme.setLibelle("Femme");
 		homme = sexRepository.save(homme);
@@ -76,8 +86,6 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurB.setDateNaissance(new Date(1961, 1, 26));
 		docteurB = docteurRepository.save(docteurB);
 
-		Date dateConsultation = null;
-
 		for (int i = 0; i < 30; i++) {
 
 			/** Creating Date attributes */
@@ -92,10 +100,10 @@ public class CreatingDataSet implements CommandLineRunner {
 			patient.setEmail("email" + i + i + "@mail.com");
 			patient.setNom("nom" + i);
 			patient.setPrenom("prenom" + i);
-			depense =new Depense();
-			depense.setDate(new Date("2017/"+month+"/"+day));
-			depense.setLibelle("Depense "+i);
-			depense.setMontant(random.nextFloat()*(400 - 250) + 100);
+			depense = new Depense();
+			depense.setDate(new Date("2017/" + month + "/" + day));
+			depense.setLibelle("Depense " + i);
+			depense.setMontant(random.nextFloat() * (400 - 250) + 100);
 			depenseRepository.save(depense);
 
 			/** Creating and initiating Sex Reference */
@@ -117,21 +125,19 @@ public class CreatingDataSet implements CommandLineRunner {
 			else
 				docteur = docteurB;
 			for (int j = 0; j < 6; j++) {
-				/** Creating and setting consultation */
+
 				month = random.nextInt(12 - 1) + 1;
 				day = random.nextInt(30 - 1) + 1;
 				dateConsultation = new Date(year + "/" + month + "/" + day);
 
-				/**Creating Rendez-vous*/
-
-
+				/** Creating and setting consultation */
 				consultation = new Consultation();
 				consultation.setDateConsultation(dateConsultation);
 				consultation.setDossierMedical(dossierMedical);
 				consultation.setDocteur(docteur);
-				consultation.setPoid(random.nextFloat()*(120 - 40) + 40);
-				consultation.setTemperature(random.nextFloat()*(40 - 30) + 30);
-				consultation.setMontant_payee(random.nextFloat()*(500 - 250) + 200);
+				consultation.setPoid(random.nextFloat() * (120 - 40) + 40);
+				consultation.setTemperature(random.nextFloat() * (40 - 30) + 30);
+				consultation.setMontant_payee(random.nextFloat() * (500 - 250) + 200);
 				if (month < 6) {
 					examen = new Examen();
 					examen.setConsultation(consultation);
@@ -143,7 +149,22 @@ public class CreatingDataSet implements CommandLineRunner {
 				dossierMedical.getConsultations().add(consultation);
 			}
 			medicalService.addDossieMecial(dossierMedical);
+
+			/** Creating Rendez-vous */
+			patient = dossierMedical.getPatient();
+			consultations = dossierMedical.getConsultations();
+			for (Consultation consultation : consultations) {
+				rendezVous = new RendezVous();
+				rendezVous.setDocteur(consultation.getDocteur());
+				rendezVous.setDate(consultation.getDateConsultation());
+				rendezVous.setPatient(patient);
+				rendezVous.setEtat(1);
+				rendezVous.setHeure(new Time(10, 00, 00));
+				rendezvousService.addRendezVous(rendezVous);
+			}
+
 		}
+
 	}
 
 }

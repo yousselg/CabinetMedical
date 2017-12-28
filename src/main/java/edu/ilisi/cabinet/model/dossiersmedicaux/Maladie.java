@@ -38,7 +38,7 @@ public class Maladie {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "maladie_patient", joinColumns = @JoinColumn(name = "idmaladie") , inverseJoinColumns = @JoinColumn(name = "idpatient") )
 	private List<Patient> patients;
-	
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "maladie_symptome", joinColumns = @JoinColumn(name = "idmaladie") , inverseJoinColumns = @JoinColumn(name = "idsymptome") )
 	private List<Symptome> symptomes;

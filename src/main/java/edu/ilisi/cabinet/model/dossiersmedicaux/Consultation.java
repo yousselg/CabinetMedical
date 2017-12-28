@@ -30,29 +30,30 @@ import lombok.Data;
 @Entity
 public class Consultation {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idConsultation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateConsultation;
 	private Float poid;
 	private Float temperature;
 	private Float montant_payee;
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idSymptome") )
 	private List<Symptome> symptomes;
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = { CascadeType.REFRESH})
 	private Docteur docteur;
 	@JsonIgnore
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private Examen examen;
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private Ordonnance ordonnance;
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.REFRESH)
-	private DossierMedical dossierMedical ;
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private DossierMedical dossierMedical;
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	private TypeConsultation typeConsultation;
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST,CascadeType.REMOVE })
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "Consultation_maladie", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idMaladie") )
 	private List<Maladie> maladies;
 	private Integer etat = 0;
