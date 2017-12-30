@@ -43,9 +43,9 @@ public class RendezVousController {
 		return new ResponseEntity<RendezVous>(rendezVous, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/mois/{mois}", method = RequestMethod.GET)
-	public ResponseEntity<?> getRendezVousByMois(@PathVariable  @DateTimeFormat(pattern="yyyy-MM-dd") Date mois) {
-		List<RendezVous> rendezVous = rendezVousService.getRendezVousMois(mois);
+	@RequestMapping(value = "/{annee}/{mois}", method = RequestMethod.GET)
+	public ResponseEntity<?> getRendezVousByMois(@PathVariable Integer annee,@PathVariable Integer mois) {
+		List<RendezVous> rendezVous = rendezVousService.getRendezVousMois(annee,mois);
 		if (rendezVous == null)
 			return new ResponseEntity<RendezVous>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<RendezVous>>(rendezVous, HttpStatus.OK);

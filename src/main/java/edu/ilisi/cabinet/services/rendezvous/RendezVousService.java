@@ -17,7 +17,7 @@ public interface RendezVousService {
 
 	public RendezVous getRendezVous(Long id);
 
-	public List<RendezVous> getRendezVousMois(Date mois);
+	public List<RendezVous> getRendezVousMois(Integer annee,Integer mois);
 
 	public List<RendezVous> getRendezVousJour(Date jour);
 

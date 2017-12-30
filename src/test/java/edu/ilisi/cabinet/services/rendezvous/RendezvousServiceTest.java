@@ -43,8 +43,7 @@ public class RendezvousServiceTest {
 
 	@Test
 	public void testGetRendezVousMois() {
-		@SuppressWarnings("deprecation")
-		List<RendezVous> rendezvous = rendezvousService.getRendezVousMois(new Date("2017/01/01"));
+		List<RendezVous> rendezvous = rendezvousService.getRendezVousMois(2017,01);
 		assertThat(rendezvous.size()).isGreaterThanOrEqualTo(10);
 	}
 

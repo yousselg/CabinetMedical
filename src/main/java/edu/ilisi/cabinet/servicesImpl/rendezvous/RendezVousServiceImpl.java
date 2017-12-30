@@ -40,11 +40,10 @@ public class RendezVousServiceImpl implements RendezVousService {
 	public RendezVous getRendezVous(Long id) {
 		return rendezVousRepository.findOne(id);
 	}
-
-	@SuppressWarnings("deprecation")
+	
 	@Override
-	public List<RendezVous> getRendezVousMois(Date mois) {
-		return rendezVousRepository.findByMois(mois.getMonth()+1);
+	public List<RendezVous> getRendezVousMois(Integer annee,Integer mois) {
+		return rendezVousRepository.findByMois(annee,mois);
 	}
 
 	@Override
