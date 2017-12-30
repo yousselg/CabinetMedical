@@ -30,7 +30,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "idPersonne")
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class Patient extends Personne {
 	
 	public Patient(){
@@ -45,7 +45,7 @@ public class Patient extends Personne {
 	private RefSex refSex;
 
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.EAGER,mappedBy = "patient", cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY,mappedBy = "patient", cascade = CascadeType.ALL)
 	private Set<RendezVous> listRendezVous;
 
 }

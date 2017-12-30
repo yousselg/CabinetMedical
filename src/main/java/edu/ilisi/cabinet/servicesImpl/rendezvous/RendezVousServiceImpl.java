@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet.servicesImpl.rendezvous;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +13,18 @@ import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
 @Service
 public class RendezVousServiceImpl implements RendezVousService {
 
-    @Autowired
-    private RendezvousRepository rendezVousRepository;
+	@Autowired
+	private RendezvousRepository rendezVousRepository;
 
-    @Override
-    public void addRendezVous(RendezVous rendezVous) {
-    	rendezVousRepository.save(rendezVous);
-    }
+	@Override
+	public RendezVous addRendezVous(RendezVous rendezVous) {
+		return rendezVousRepository.save(rendezVous);
+	}
 
-    @Override
-    public List<RendezVous> getAllRendezVous() {
-        return (List<RendezVous>) rendezVousRepository.findAll();
-    }
+	@Override
+	public List<RendezVous> getAllRendezVous() {
+		return (List<RendezVous>) rendezVousRepository.findAll();
+	}
 
 	@Override
 	public void deleteRendezVous(Long id) {
@@ -38,6 +39,17 @@ public class RendezVousServiceImpl implements RendezVousService {
 	@Override
 	public RendezVous getRendezVous(Long id) {
 		return rendezVousRepository.findOne(id);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public List<RendezVous> getRendezVousMois(Date mois) {
+		return rendezVousRepository.findByMois(mois.getMonth()+1);
+	}
+
+	@Override
+	public List<RendezVous> getRendezVousJour(Date jour) {
+		return rendezVousRepository.findByDate(jour);
 	}
 
 }

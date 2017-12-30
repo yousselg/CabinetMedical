@@ -1,13 +1,13 @@
 package edu.ilisi.cabinet.services.rendezvous;
 
+import java.util.Date;
 import java.util.List;
 
-import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 
 public interface RendezVousService {
-	
-	public void addRendezVous(RendezVous rendezvous);
+
+	public RendezVous addRendezVous(RendezVous rendezvous);
 
 	public List<RendezVous> getAllRendezVous();
 
@@ -16,6 +16,9 @@ public interface RendezVousService {
 	public RendezVous updateRendezVous(RendezVous rendezvous);
 
 	public RendezVous getRendezVous(Long id);
-	
+
+	public List<RendezVous> getRendezVousMois(Date mois);
+
+	public List<RendezVous> getRendezVousJour(Date jour);
 
 }

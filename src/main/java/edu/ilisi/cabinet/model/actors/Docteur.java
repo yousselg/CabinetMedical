@@ -1,7 +1,7 @@
 package edu.ilisi.cabinet.model.actors;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,22 +22,22 @@ import lombok.EqualsAndHashCode;
  * @created 12-nov.-2017 01:01:55
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName = "idPersonne")
 public class Docteur extends Personne {
 	public Docteur() {
-		consultations = new HashSet<>();
-		listRendezVous = new HashSet<>();
+		consultations = new ArrayList<>();
+		listRendezVous = new ArrayList<>();
 	}
 
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.EAGER,mappedBy = "docteur", cascade = CascadeType.ALL)
-	private Set<Consultation> consultations;
+	@OneToMany(fetch=FetchType.LAZY,mappedBy = "docteur", cascade = CascadeType.ALL)
+	private List<Consultation> consultations;
 
 	@JsonIgnore
 	@OneToMany(fetch=FetchType.EAGER,mappedBy = "docteur", cascade = CascadeType.ALL)
-	private Set<RendezVous> listRendezVous;
+	private List<RendezVous> listRendezVous;
 	
 	
 }

@@ -25,29 +25,23 @@ public class DossierMedicalServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@Test
 	public void update() {
 		int before, after;
-		
+
 		dossier = dossierService.getDossierMedical(5L);
-		
 		consultation = new Consultation();
 		consultation.setDateConsultation(new Date());
 		consultation.setDossierMedical(dossier);
-		
 		before = dossier.getConsultations().size();
 		
-		 dossierService.addConsultation(5L, consultation);
-		//dossier.getConsultations().add(consultation);
-		//dossierService.addDossieMecial(dossier);
-
+		dossierService.addConsultation(5L, consultation);
 		dossier = dossierService.getDossierMedical(5L);
 		after = dossier.getConsultations().size();
-		System.err.println("Before "+before);
-		System.err.println("AFter "+after);
+		
 		assertNotEquals(before, after);
 	}
 }
