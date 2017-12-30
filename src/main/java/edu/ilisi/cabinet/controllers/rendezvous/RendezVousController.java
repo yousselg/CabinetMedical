@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
+import io.swagger.annotations.ApiParam;
 
 
 @RequestMapping("/rendezVous")
@@ -52,7 +53,7 @@ public class RendezVousController {
 	}
 	
 	@RequestMapping(value = "/jour/{jour}", method = RequestMethod.GET)
-	public ResponseEntity<?> getRendezVousByDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") Date jour) {
+	public ResponseEntity<?> getRendezVousByDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @ApiParam(value = "Format de parametre yyyy-MM-dd",format="yyyy-MM-dd",example="2017-01-01") Date jour) {
 		List<RendezVous> rendezVous = rendezVousService.getRendezVousJour(jour);
 		if (rendezVous == null)
 			return new ResponseEntity<RendezVous>(HttpStatus.NO_CONTENT);
