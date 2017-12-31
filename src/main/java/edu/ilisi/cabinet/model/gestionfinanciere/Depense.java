@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.model.gestionFinanciere;
+package edu.ilisi.cabinet.model.gestionfinanciere;
 
 import lombok.Data;
 
@@ -15,6 +15,6 @@ public class Depense {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long idDepense;
     private String libelle;
-    private Float montant;
+    private Double montant;
     private Date date;
 }

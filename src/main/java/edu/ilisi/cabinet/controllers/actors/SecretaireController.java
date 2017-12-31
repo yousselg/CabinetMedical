@@ -25,34 +25,34 @@ public class SecretaireController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Secretaire>> getAllSecretaires() {
-		List<Secretaire> secretaires = (List<Secretaire>) secretaireService.getAllSecretaires();
+		List<Secretaire> secretaires = secretaireService.getAllSecretaires();
 		if (secretaires.isEmpty()) {
-			return new ResponseEntity<List<Secretaire>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Secretaire>>(secretaires, HttpStatus.OK);
+		return new ResponseEntity<>(secretaires, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteSecretaire(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deleteSecretaire(@PathVariable Long id) {
 		secretaireService.deleteSecretaire(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateSecretaire(@RequestBody Secretaire secretaire) {
+	public ResponseEntity<Secretaire> updateSecretaire(@RequestBody Secretaire secretaire) {
 		secretaireService.addSecretaire(secretaire);
-		return new ResponseEntity<Secretaire>(secretaire, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(secretaire, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getSecretaireById(@PathVariable Long id) {
+	public ResponseEntity<Secretaire> getSecretaireById(@PathVariable Long id) {
 		Secretaire secretaire = secretaireService.getSecretaire(id);
 		if (secretaire == null) {
-			return new ResponseEntity<List<Secretaire>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<Secretaire>(secretaire, HttpStatus.OK);
+		return new ResponseEntity<>(secretaire, HttpStatus.OK);
 
 	}
-	
+
 }

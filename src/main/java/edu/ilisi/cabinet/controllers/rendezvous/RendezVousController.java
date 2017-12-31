@@ -29,53 +29,53 @@ public class RendezVousController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<RendezVous>> getAllRendezVous() {
-		List<RendezVous> rendezVouss = (List<RendezVous>) rendezVousService.getAllRendezVous();
+		List<RendezVous> rendezVouss =  rendezVousService.getAllRendezVous();
 		if (rendezVouss.isEmpty()) {
-			return new ResponseEntity<List<RendezVous>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<RendezVous>>(rendezVouss, HttpStatus.OK);
+		return new ResponseEntity<>(rendezVouss, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getRendezVousById(@PathVariable Long id) {
+	public ResponseEntity<RendezVous> getRendezVousById(@PathVariable Long id) {
 		RendezVous rendezVous = rendezVousService.getRendezVous(id);
 		if (rendezVous == null)
-			return new ResponseEntity<RendezVous>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<RendezVous>(rendezVous, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(rendezVous, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{annee}/{mois}", method = RequestMethod.GET)
-	public ResponseEntity<?> getRendezVousByMois(@PathVariable Integer annee,@PathVariable Integer mois) {
+	public ResponseEntity<List<RendezVous>> getRendezVousByMois(@PathVariable Integer annee,@PathVariable Integer mois) {
 		List<RendezVous> rendezVous = rendezVousService.getRendezVousMois(annee,mois);
 		if (rendezVous == null)
-			return new ResponseEntity<RendezVous>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<List<RendezVous>>(rendezVous, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(rendezVous, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/jour/{jour}", method = RequestMethod.GET)
-	public ResponseEntity<?> getRendezVousByDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @ApiParam(value = "Format de parametre yyyy-MM-dd",format="yyyy-MM-dd",example="2017-01-01") Date jour) {
+	public ResponseEntity<List<RendezVous>> getRendezVousByDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @ApiParam(value = "Format de parametre yyyy-MM-dd",format="yyyy-MM-dd",example="2017-01-01") Date jour) {
 		List<RendezVous> rendezVous = rendezVousService.getRendezVousJour(jour);
 		if (rendezVous == null)
-			return new ResponseEntity<RendezVous>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<List<RendezVous>>(rendezVous, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(rendezVous, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addRendezVous(@RequestBody RendezVous rendezVous) {
+	public ResponseEntity<RendezVous> addRendezVous(@RequestBody RendezVous rendezVous) {
 		rendezVousService.addRendezVous(rendezVous);
-		return new ResponseEntity<RendezVous>(rendezVous, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(rendezVous, HttpStatus.ACCEPTED);
 
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateRendezVous(@RequestBody RendezVous rendezVous) {
+	public ResponseEntity<RendezVous> updateRendezVous(@RequestBody RendezVous rendezVous) {
 		rendezVousService.updateRendezVous(rendezVous);
-		return new ResponseEntity<RendezVous>(rendezVous, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(rendezVous, HttpStatus.ACCEPTED);
 
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteRendezVous(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deleteRendezVous(@PathVariable Long id) {
 		rendezVousService.deleteRendezVous(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

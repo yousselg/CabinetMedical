@@ -8,13 +8,13 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Ordonnance;
 
 public interface ConsultationService {
 
-	public void addConsultation(Consultation Consultation);
+	public void addConsultation(Consultation consultation);
 
 	public List<Consultation> getAllConsultations();
 
 	public void deleteConsultation(Long id);
 
-	public Consultation updateConsultation(Consultation Consultation);
+	public Consultation updateConsultation(Consultation consultation);
 
 	public Consultation getConsultation(Long id);
 	

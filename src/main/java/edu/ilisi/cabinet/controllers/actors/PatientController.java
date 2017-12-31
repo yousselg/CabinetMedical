@@ -25,33 +25,33 @@ public class PatientController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Patient>> listAllPatients() {
-		List<Patient> patients = (List<Patient>) patientService.getAllPatients();
+		List<Patient> patients =  patientService.getAllPatients();
 		if (patients.isEmpty()) {
-			return new ResponseEntity<List<Patient>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Patient>>(patients, HttpStatus.OK);
+		return new ResponseEntity<>(patients, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletePatient(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deletePatient(@PathVariable Long id) {
 		patientService.deletePatient(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updatePatient(@RequestBody Patient patient) {
+	public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) {
 		patientService.addPatient(patient);
-		return new ResponseEntity<Patient>(patient, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(patient, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getPatientById(@PathVariable Long id) {
+	public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
 		Patient patient = patientService.getPatient(id);
 		if (patient == null) {
-			return new ResponseEntity<List<Patient>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<Patient>(patient, HttpStatus.OK);
+		return new ResponseEntity<>(patient, HttpStatus.OK);
 
 	}
 	

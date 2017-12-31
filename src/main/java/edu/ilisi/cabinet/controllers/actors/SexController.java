@@ -14,23 +14,23 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class SexController {
-    @Autowired
-    private SexService service;
+	@Autowired
+	private SexService service;
 
-    @RequestMapping( method = RequestMethod.GET)
-    public ResponseEntity<List<RefSex>> getAllGenders() {
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<RefSex>> getAllGenders() {
 
-        List<RefSex> genders = (List<RefSex>) service.getlistofSex();
-        if(genders.isEmpty()){
-            return new ResponseEntity<List<RefSex>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-        }
-        return new ResponseEntity<List<RefSex>>(genders, HttpStatus.OK);
-    }
+		List<RefSex> genders = service.getlistofSex();
+		if (genders.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(genders, HttpStatus.OK);
+	}
 
-    @RequestMapping(method = RequestMethod.POST )
-    public ResponseEntity<?> addGender(@RequestBody RefSex input) {
-        service.addgender(input);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<HttpStatus> addGender(@RequestBody RefSex input) {
+		service.addgender(input);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 
-    }
+	}
 }

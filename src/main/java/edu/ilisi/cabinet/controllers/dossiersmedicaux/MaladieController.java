@@ -25,38 +25,38 @@ public class MaladieController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Maladie>> getAllMaladies() {
-		List<Maladie> maladies = (List<Maladie>) maladieService.getAllMaladies();
+		List<Maladie> maladies = maladieService.getAllMaladies();
 		if (maladies.isEmpty()) {
-			return new ResponseEntity<List<Maladie>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Maladie>>(maladies, HttpStatus.OK);
+		return new ResponseEntity<>(maladies, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteMaladie(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deleteMaladie(@PathVariable Long id) {
 		maladieService.deleteMaladie(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateMaladie(@RequestBody Maladie maladie) {
+	public ResponseEntity<Maladie> updateMaladie(@RequestBody Maladie maladie) {
 		maladieService.updateMaladie(maladie);
-		return new ResponseEntity<Maladie>(maladie, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(maladie, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getMaladieById(@PathVariable Long id) {
+	public ResponseEntity<Maladie> getMaladieById(@PathVariable Long id) {
 		Maladie maladie = maladieService.getMaladie(id);
 		if (maladie == null)
-			return new ResponseEntity<Maladie>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<Maladie>(maladie, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(maladie, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addMaladie(@RequestBody Maladie maladie) {
+	public ResponseEntity<Maladie> addMaladie(@RequestBody Maladie maladie) {
 		maladieService.addMaladie(maladie);
-		return new ResponseEntity<Maladie>(maladie, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(maladie, HttpStatus.ACCEPTED);
 
 	}
 }

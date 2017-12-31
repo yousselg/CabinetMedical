@@ -6,13 +6,13 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.Medicament;
 
 public interface MedicamentService {
 
-	public void addMedicament(Medicament Medicament);
+	public void addMedicament(Medicament medicament);
 
 	public List<Medicament> getAllMedicaments();
 
 	public void deleteMedicament(Long id);
 
-	public Medicament updateMedicament(Medicament Medicament);
+	public Medicament updateMedicament(Medicament medicament);
 
 	public Medicament getMedicament(Long id);
 	

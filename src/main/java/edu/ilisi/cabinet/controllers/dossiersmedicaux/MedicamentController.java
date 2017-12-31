@@ -25,38 +25,38 @@ public class MedicamentController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Medicament>> getAllMedicaments() {
-		List<Medicament> medicaments = (List<Medicament>) medicamentService.getAllMedicaments();
+		List<Medicament> medicaments = medicamentService.getAllMedicaments();
 		if (medicaments.isEmpty()) {
-			return new ResponseEntity<List<Medicament>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Medicament>>(medicaments, HttpStatus.OK);
+		return new ResponseEntity<>(medicaments, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteMedicament(@PathVariable Long id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<HttpStatus> deleteMedicament(@PathVariable Long id) {
 		medicamentService.deleteMedicament(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateMedicament(@RequestBody Medicament medicament) {
+	public ResponseEntity<Medicament> updateMedicament(@RequestBody Medicament medicament) {
 		medicamentService.updateMedicament(medicament);
-		return new ResponseEntity<Medicament>(medicament, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(medicament, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getMedicamentById(@PathVariable Long id) {
+	public ResponseEntity<Medicament> getMedicamentById(@PathVariable Long id) {
 		Medicament medicament = medicamentService.getMedicament(id);
 		if (medicament == null)
-			return new ResponseEntity<Medicament>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<Medicament>(medicament, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(medicament, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addMedicament(@RequestBody Medicament medicament) {
+	public ResponseEntity<Medicament> addMedicament(@RequestBody Medicament medicament) {
 		medicamentService.addMedicament(medicament);
-		return new ResponseEntity<Medicament>(medicament, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(medicament, HttpStatus.ACCEPTED);
 
 	}
 }

@@ -1,5 +1,6 @@
 package edu.ilisi.cabinet;
 
+import java.security.SecureRandom;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -17,11 +18,11 @@ import edu.ilisi.cabinet.model.actors.RefSex;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
-import edu.ilisi.cabinet.model.gestionFinanciere.Depense;
+import edu.ilisi.cabinet.model.gestionfinanciere.Depense;
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
 import edu.ilisi.cabinet.repositories.actors.SexRepository;
-import edu.ilisi.cabinet.repositories.gestionFinanciere.DepenseRepository;
+import edu.ilisi.cabinet.repositories.gestionfinanciere.DepenseRepository;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
 
@@ -54,11 +55,13 @@ public class CreatingDataSet implements CommandLineRunner {
 	Date dateConsultation = null;
 	RendezVous rendezVous;
 	List<Consultation> consultations;
-	int year, month, day;
+	int year;
+	int month;
+	int day;
 
 	RefSex homme = new RefSex();
 	RefSex femme = new RefSex();
-	Random random = new Random();
+	Random random = new SecureRandom();
 	Depense depense = null;
 
 	@SuppressWarnings("deprecation")
@@ -103,7 +106,7 @@ public class CreatingDataSet implements CommandLineRunner {
 			depense = new Depense();
 			depense.setDate(new Date("2017/" + month + "/" + day));
 			depense.setLibelle("Depense " + i);
-			depense.setMontant(random.nextFloat() * (400 - 250) + 100);
+			depense.setMontant(random.nextDouble() * (400 - 250) + 100);
 			depenseRepository.save(depense);
 
 			/** Creating and initiating Sex Reference */
@@ -112,7 +115,7 @@ public class CreatingDataSet implements CommandLineRunner {
 			else
 				patient.setRefSex(femme);
 			year = 2017;
-			patient.setTelephone(100000000 + random.nextInt(900000) + "");
+			patient.setTelephone(100_000_000 + random.nextInt(900_000) + "");
 
 			/** Creating and setting Dossier medical */
 			dossierMedical = new DossierMedical();
@@ -135,9 +138,9 @@ public class CreatingDataSet implements CommandLineRunner {
 				consultation.setDateConsultation(dateConsultation);
 				consultation.setDossierMedical(dossierMedical);
 				consultation.setDocteur(docteur);
-				consultation.setPoid(random.nextFloat() * (120 - 40) + 40);
-				consultation.setTemperature(random.nextFloat() * (40 - 30) + 30);
-				consultation.setMontant_payee(random.nextFloat() * (500 - 250) + 200);
+				consultation.setPoid(random.nextDouble() * (120 - 40) + 40);
+				consultation.setTemperature(random.nextDouble() * (40 - 30) + 30);
+				consultation.setMontant_payee(random.nextDouble() * (500 - 250) + 200);
 				if (month < 6) {
 					examen = new Examen();
 					examen.setConsultation(consultation);
@@ -153,13 +156,13 @@ public class CreatingDataSet implements CommandLineRunner {
 			/** Creating Rendez-vous */
 			patient = dossierMedical.getPatient();
 			consultations = dossierMedical.getConsultations();
-			for (Consultation consultation : consultations) {
+			for (Consultation varConsultation: consultations) {
 				rendezVous = new RendezVous();
-				rendezVous.setDocteur(consultation.getDocteur());
-				rendezVous.setDate(consultation.getDateConsultation());
+				rendezVous.setDocteur(varConsultation.getDocteur());
+				rendezVous.setDate(varConsultation.getDateConsultation());
 				rendezVous.setPatient(patient);
 				rendezVous.setEtat(1);
-				rendezVous.setHeure(new Time(10, 00, 00));
+				rendezVous.setHeure(new Time(10, 0, 0));
 				rendezvousService.addRendezVous(rendezVous);
 			}
 

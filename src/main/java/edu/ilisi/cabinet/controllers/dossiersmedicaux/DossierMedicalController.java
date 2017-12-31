@@ -34,44 +34,44 @@ public class DossierMedicalController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DossierMedical>> getAllDossiersMedicaux() {
-		List<DossierMedical> dossierMedicals = (List<DossierMedical>) dmService.getAllDossierMedicaux();
+		List<DossierMedical> dossierMedicals = dmService.getAllDossierMedicaux();
 		if (dossierMedicals.isEmpty()) {
-			return new ResponseEntity<List<DossierMedical>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<DossierMedical>>(dossierMedicals, HttpStatus.OK);
+		return new ResponseEntity<>(dossierMedicals, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addDossierMedical(@RequestBody Patient input) {
+	public ResponseEntity<DossierMedical> addDossierMedical(@RequestBody Patient input) {
 		DossierMedical dossierMedical = new DossierMedical();
 		dossierMedical.setPatient(input);
 		dossierMedical.setDateCreation(new Date());
 		dmService.addDossieMecial(dossierMedical);
-		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.CREATED);
+		return new ResponseEntity<>(dossierMedical, HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteDossierMedical(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deleteDossierMedical(@PathVariable Long id) {
 		dmService.deleteDossierMedical(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateDossierMedical(@RequestBody DossierMedical dossierMedical) {
+	public ResponseEntity<DossierMedical> updateDossierMedical(@RequestBody DossierMedical dossierMedical) {
 		dmService.updateDossierMedical(dossierMedical);
-		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(dossierMedical, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getDossierMedicalById(@PathVariable Long id) {
+	public ResponseEntity<DossierMedical> getDossierMedicalById(@PathVariable Long id) {
 
 		DossierMedical dossierMedical = dmService.getDossierMedical(id);
 		if (dossierMedical == null) {
-			return new ResponseEntity<DossierMedical>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<DossierMedical>(dossierMedical, HttpStatus.OK);
+		return new ResponseEntity<>(dossierMedical, HttpStatus.OK);
 
 	}
 
@@ -80,8 +80,8 @@ public class DossierMedicalController {
 			@RequestBody Consultation consultation) {
 		Long idConsulLong = dmService.addConsultation(id, consultation);
 		if (idConsulLong != null)
-			return new ResponseEntity<Long>(idConsulLong, HttpStatus.CREATED);
-		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
+			return new ResponseEntity<>(idConsulLong, HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
 
 	}
 
@@ -91,24 +91,24 @@ public class DossierMedicalController {
 			@RequestBody Consultation consultation) {
 		consultation.setDossierMedical(id);
 		consultation = cnService.updateConsultation(consultation);
-		return new ResponseEntity<Consultation>(consultation, HttpStatus.CREATED);
+		return new ResponseEntity<>(consultation, HttpStatus.CREATED);
 
 	}
 
 	@RequestMapping(value = "/{id}/consultation", method = RequestMethod.GET)
-	public ResponseEntity<?> getConsultationsOfDossierMedical(@PathVariable Long id) {
+	public ResponseEntity<List<Consultation>> getConsultationsOfDossierMedical(@PathVariable Long id) {
 		List<Consultation> consultations = dmService.getDossierMedical(id).getConsultations();
 		if (consultations.isEmpty()) {
-			return new ResponseEntity<List<Consultation>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Consultation>>(consultations, HttpStatus.OK);
+		return new ResponseEntity<>(consultations, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}/consultation/{idConsultation}", method = RequestMethod.GET)
-	public ResponseEntity<?> getDetailsConsultationsOfDossierMedical(@PathVariable Long id,
+	public ResponseEntity<Consultation> getDetailsConsultationsOfDossierMedical(@PathVariable Long id,
 			@PathVariable Long idConsultation) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Location", "/consultation/" + idConsultation);
-		return new ResponseEntity<Consultation>(headers, HttpStatus.MOVED_PERMANENTLY);
+		return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
 	}
 }

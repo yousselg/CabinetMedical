@@ -26,32 +26,32 @@ public class ConsultationController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Consultation>> getAllConsultations() {
-		List<Consultation> consultations = (List<Consultation>) consultationService.getAllConsultations();
+		List<Consultation> consultations = consultationService.getAllConsultations();
 		if (consultations.isEmpty()) {
-			return new ResponseEntity<List<Consultation>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Consultation>>(consultations, HttpStatus.OK);
+		return new ResponseEntity<>(consultations, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteConsultation(@PathVariable Long id) {
+	public ResponseEntity<Consultation> deleteConsultation(@PathVariable Long id) {
 		consultationService.deleteConsultation(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateConsultation(@RequestBody Consultation consultation) {
+	public ResponseEntity<Consultation> updateConsultation(@RequestBody Consultation consultation) {
 		consultationService.updateConsultation(consultation);
-		return new ResponseEntity<Consultation>(consultation, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(consultation, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getConsultationById(@PathVariable Long id) {
+	public ResponseEntity<Consultation> getConsultationById(@PathVariable Long id) {
 		Consultation consultation = consultationService.getConsultation(id);
 		if (consultation == null)
-			return new ResponseEntity<Consultation>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<Consultation>(consultation, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(consultation, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}/ordonnance", method = RequestMethod.POST)
@@ -59,8 +59,8 @@ public class ConsultationController {
 			@RequestBody Ordonnance ordonnance) {
 		Long idConsulLong = consultationService.addOrdonnace(id, ordonnance);
 		if (idConsulLong != null)
-			return new ResponseEntity<Long>(idConsulLong, HttpStatus.CREATED);
-		return new ResponseEntity<Long>(HttpStatus.NOT_MODIFIED);
+			return new ResponseEntity<>(idConsulLong, HttpStatus.CREATED);
+		return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
 
 	}
 

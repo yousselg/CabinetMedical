@@ -26,35 +26,35 @@ public class DocteurController {
 	
 
 	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteDocteur(@PathVariable Long id) {
+	public ResponseEntity<HttpStatus> deleteDocteur(@PathVariable Long id) {
 		docteurService.deleteDocteur(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateDocteur(@RequestBody Docteur docteur) {
+	public ResponseEntity<Docteur> updateDocteur(@RequestBody Docteur docteur) {
 		docteurService.addDocteur(docteur);
-		return new ResponseEntity<Docteur>(docteur, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(docteur, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getDocteurById(@PathVariable Long id) {
+	public ResponseEntity<Docteur> getDocteurById(@PathVariable Long id) {
 		Docteur docteur = docteurService.getDocteur(id);
 		if (docteur == null) {
-			return new ResponseEntity<List<Docteur>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<Docteur>(docteur, HttpStatus.OK);
+		return new ResponseEntity<>(docteur, HttpStatus.OK);
 
 	}
 	
 	@RequestMapping(value="",method = RequestMethod.GET)
 	public ResponseEntity<List<Docteur>> listAllDocteurs() {
-		List<Docteur> docteurs = (List<Docteur>) docteurService.getAllDocteurs();
+		List<Docteur> docteurs =  docteurService.getAllDocteurs();
 		if (docteurs.isEmpty()) {
-			return new ResponseEntity<List<Docteur>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Docteur>>(docteurs, HttpStatus.OK);
+		return new ResponseEntity<>(docteurs, HttpStatus.OK);
 	}
 	
 }

@@ -35,13 +35,13 @@ public class Consultation {
 	private Long idConsultation;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateConsultation;
-	private Float poid;
-	private Float temperature;
-	private Float montant_payee;
+	private Double poid;
+	private Double temperature;
+	private Double montant_payee;
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinTable(name = "Consultation_symptome", joinColumns = @JoinColumn(name = "idConsultation") , inverseJoinColumns = @JoinColumn(name = "idSymptome") )
 	private List<Symptome> symptomes;
-	@ManyToOne(cascade = { CascadeType.REFRESH})
+	@ManyToOne(cascade = { CascadeType.REFRESH })
 	private Docteur docteur;
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST })

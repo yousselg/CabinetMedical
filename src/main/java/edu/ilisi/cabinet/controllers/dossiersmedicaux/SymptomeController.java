@@ -25,40 +25,40 @@ public class SymptomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Symptome>> getAllSymptomes() {
-		List<Symptome> symptomes = (List<Symptome>) symptomeService.getAllSymptomes();
+		List<Symptome> symptomes = symptomeService.getAllSymptomes();
 		if (symptomes.isEmpty()) {
-			return new ResponseEntity<List<Symptome>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Symptome>>(symptomes, HttpStatus.OK);
+		return new ResponseEntity<>(symptomes, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteSymptome(@PathVariable Long id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<HttpStatus> deleteSymptome(@PathVariable Long id) {
 		symptomeService.deleteSymptome(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> addSymptome(@RequestBody Symptome symptome) {
+	public ResponseEntity<Symptome> addSymptome(@RequestBody Symptome symptome) {
 		symptomeService.addSymptome(symptome);
-		return new ResponseEntity<Symptome>(symptome, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(symptome, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<?> updateSymptome(@RequestBody Symptome symptome) {
+	public ResponseEntity<Symptome> updateSymptome(@RequestBody Symptome symptome) {
 		symptomeService.updateSymptome(symptome);
-		return new ResponseEntity<Symptome>(symptome, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(symptome, HttpStatus.ACCEPTED);
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getSymptomeById(@PathVariable Long id) {
+	public ResponseEntity<Symptome> getSymptomeById(@PathVariable Long id) {
 		Symptome symptome = symptomeService.getSymptome(id);
 		if (symptome == null) {
-			return new ResponseEntity<Symptome>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<Symptome>(symptome, HttpStatus.OK);
+		return new ResponseEntity<>(symptome, HttpStatus.OK);
 	}
-	
+
 }
