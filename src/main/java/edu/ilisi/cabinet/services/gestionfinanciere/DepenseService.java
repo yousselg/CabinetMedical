@@ -6,15 +6,15 @@ import java.util.List;
 import edu.ilisi.cabinet.model.gestionfinanciere.Depense;
 
 public interface DepenseService {
-	public void addDepense(Depense depense);
+  void addDepense(Depense depense);
 
-	public List<Depense> getAllDepenses();
+  List<Depense> getAllDepenses();
 
-	public void deleteDepense(Long id);
+  void deleteDepense(Long id);
 
-	public Depense updateDepense(Depense depense);
+  Depense updateDepense(Depense depense);
 
-	public Depense getDepense(Long id);
+  Depense getDepense(Long id);
 
-	public List<Depense> getDepensesByDate(Date b, Date e);
+  List<Depense> getDepensesByDate(Date b, Date e);
 }

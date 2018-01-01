@@ -20,14 +20,14 @@ import lombok.Data;
 @Entity
 public class CertificatMedical {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long idCertificatMedical;
-	private Date dateDebut;
-	private int nombreJour;
-	private String observation;
-	
-	@OneToOne(cascade=CascadeType.REFRESH)
-	private Consultation consultation;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long idCertificatMedical;
+  private Date dateDebut;
+  private int nombreJour;
+  private String observation;
 
+  @OneToOne(cascade = CascadeType.REFRESH)
+  private Consultation consultation;
 
 }

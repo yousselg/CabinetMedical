@@ -6,11 +6,11 @@ import edu.ilisi.cabinet.model.actors.Docteur;
 
 public interface DocteurService {
 
-	public void addDocteur(Docteur docteur);
+	void addDocteur(Docteur docteur);
 
-	public Docteur getDocteur(Long id);
+	Docteur getDocteur(Long id);
 	
-	public void deleteDocteur(Long id);
+	void deleteDocteur(Long id);
 
-	public List<Docteur> getAllDocteurs();
+	List<Docteur> getAllDocteurs();
 }

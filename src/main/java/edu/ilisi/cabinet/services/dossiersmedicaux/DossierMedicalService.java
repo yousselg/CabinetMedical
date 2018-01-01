@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface DossierMedicalService {
 
-	public void addDossieMecial(DossierMedical dossierMedical);
+  void addDossieMecial(DossierMedical dossierMedical);
 
-	public List<DossierMedical> getAllDossierMedicaux();
+  List<DossierMedical> getAllDossierMedicaux();
 
-	public void deleteDossierMedical(Long id);
+  void deleteDossierMedical(Long id);
 
-	public DossierMedical updateDossierMedical(DossierMedical dossierMedical);
+  DossierMedical updateDossierMedical(DossierMedical dossierMedical);
 
-	public DossierMedical getDossierMedical(Long id);
-	
-	public Long addConsultation(Long id,Consultation consultation);
+  DossierMedical getDossierMedical(Long id);
+
+  Long addConsultation(Long id,Consultation consultation);
 }
