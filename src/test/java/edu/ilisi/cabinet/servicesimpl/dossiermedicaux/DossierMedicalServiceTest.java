@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.services.dossiersmedicaux;
+package edu.ilisi.cabinet.servicesimpl.dossiermedicaux;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
+import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

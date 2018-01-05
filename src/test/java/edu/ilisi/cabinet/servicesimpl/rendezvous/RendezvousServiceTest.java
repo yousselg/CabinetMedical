@@ -1,4 +1,4 @@
-package edu.ilisi.cabinet.services.rendezvous;
+package edu.ilisi.cabinet.servicesimpl.rendezvous;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
+import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
