@@ -38,7 +38,7 @@ public class DossierMedical {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dossierMedical", cascade = CascadeType.ALL)
 	private List<Consultation> consultations = new ArrayList<>();
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	private Patient patient;
 
 }

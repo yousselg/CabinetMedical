@@ -38,12 +38,19 @@ public class SecretaireController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Secretaire> updateSecretaire(@RequestBody Secretaire secretaire) {
-		secretaireService.addSecretaire(secretaire);
-		return new ResponseEntity<>(secretaire, HttpStatus.ACCEPTED);
+  @RequestMapping(method = RequestMethod.PUT)
+  public ResponseEntity<Secretaire> updateSecretaire(@RequestBody Secretaire secretaire) {
+    secretaireService.addSecretaire(secretaire);
+    return new ResponseEntity<>(secretaire, HttpStatus.ACCEPTED);
 
-	}
+  }
+  
+  @RequestMapping(method = RequestMethod.POST)
+  public ResponseEntity<Secretaire> addSecretaire(@RequestBody Secretaire secretaire) {
+    secretaireService.addSecretaire(secretaire);
+    return new ResponseEntity<>(secretaire, HttpStatus.ACCEPTED);
+
+  }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Secretaire> getSecretaireById(@PathVariable Long id) {

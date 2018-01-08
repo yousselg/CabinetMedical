@@ -20,9 +20,10 @@ import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Examen;
 import edu.ilisi.cabinet.model.gestionfinanciere.Depense;
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
-import edu.ilisi.cabinet.repositories.actors.DocteurRepository;
 import edu.ilisi.cabinet.repositories.actors.SexRepository;
 import edu.ilisi.cabinet.repositories.gestionfinanciere.DepenseRepository;
+import edu.ilisi.cabinet.services.actors.DocteurService;
+import edu.ilisi.cabinet.services.actors.PatientService;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
 import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
 
@@ -34,7 +35,10 @@ public class CreatingDataSet implements CommandLineRunner {
 	private DossierMedicalService medicalService;
 
 	@Autowired
-	private DocteurRepository docteurRepository;
+  private DocteurService docteurService;
+	
+	@Autowired
+  private PatientService patientService;
 
 	@Autowired
 	private SexRepository sexRepository;
@@ -79,7 +83,9 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurA.setPrenom("Samad");
 		docteurA.setTelephone("0661234589");
 		docteurA.setDateNaissance(new Date(1970, 10, 15));
-		docteurA = docteurRepository.save(docteurA);
+		docteurA.setUsername("samadi");
+		docteurA.setPassword("password");
+		docteurA = docteurService.addDocteur(docteurA);
 
 		docteurB.setCIN("AA5289");
 		docteurB.setEmail("docMourad@email.com");
@@ -87,7 +93,9 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurB.setPrenom("Mourad");
 		docteurB.setTelephone("0661234589");
 		docteurB.setDateNaissance(new Date(1961, 1, 26));
-		docteurB = docteurRepository.save(docteurB);
+		docteurB.setUsername("alami");
+    docteurB.setPassword("password");
+		docteurB = docteurService.addDocteur(docteurB);
 
 		for (int i = 0; i < 30; i++) {
 
@@ -103,6 +111,8 @@ public class CreatingDataSet implements CommandLineRunner {
 			patient.setEmail("email" + i + i + "@mail.com");
 			patient.setNom("nom" + i);
 			patient.setPrenom("prenom" + i);
+			patient.setUsername("nom" + i);
+			patient.setPassword("password");
 			depense = new Depense();
 			depense.setDate(new Date("2017/" + month + "/" + day));
 			depense.setLibelle("Depense " + i);
@@ -116,7 +126,7 @@ public class CreatingDataSet implements CommandLineRunner {
 				patient.setRefSex(femme);
 			year = 2017;
 			patient.setTelephone(100_000_000 + random.nextInt(900_000) + "");
-
+			patient = patientService.addPatient(patient);
 			/** Creating and setting Dossier medical */
 			dossierMedical = new DossierMedical();
 			dossierMedical.setDateCreation((new Date(year + "/" + month + "/" + day)));

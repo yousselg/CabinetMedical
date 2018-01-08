@@ -6,5 +6,6 @@ import edu.ilisi.cabinet.model.actors.Personne;
 
 public interface PersonneRepository<T extends Personne> extends CrudRepository<T,Long> {
 
-	
+	Personne findByUsername(String username);
+  
 }

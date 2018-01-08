@@ -32,11 +32,18 @@ public class DocteurController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Docteur> updateDocteur(@RequestBody Docteur docteur) {
-		docteurService.addDocteur(docteur);
-		return new ResponseEntity<>(docteur, HttpStatus.ACCEPTED);
+  public ResponseEntity<Docteur> updateDocteur(@RequestBody Docteur docteur) {
+    docteurService.addDocteur(docteur);
+    return new ResponseEntity<>(docteur, HttpStatus.ACCEPTED);
 
-	}
+  }
+	
+	@RequestMapping(method = RequestMethod.POST)
+  public ResponseEntity<Docteur> addDocteur(@RequestBody Docteur docteur) {
+    docteurService.addDocteur(docteur);
+    return new ResponseEntity<>(docteur, HttpStatus.ACCEPTED);
+
+  }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Docteur> getDocteurById(@PathVariable Long id) {

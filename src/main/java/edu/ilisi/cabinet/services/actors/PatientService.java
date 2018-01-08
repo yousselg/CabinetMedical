@@ -6,7 +6,7 @@ import edu.ilisi.cabinet.model.actors.Patient;
 
 public interface PatientService {
 
-	public void addPatient(Patient patient);
+	public Patient addPatient(Patient patient);
 
 	public Patient getPatient(Long id);
 	

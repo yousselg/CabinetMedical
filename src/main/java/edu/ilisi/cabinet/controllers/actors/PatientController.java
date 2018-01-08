@@ -39,11 +39,18 @@ public class PatientController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) {
-		patientService.addPatient(patient);
-		return new ResponseEntity<>(patient, HttpStatus.ACCEPTED);
+  public ResponseEntity<Patient> updatePatient(@RequestBody Patient patient) {
+    patientService.addPatient(patient);
+    return new ResponseEntity<>(patient, HttpStatus.ACCEPTED);
 
-	}
+  }
+	
+	@RequestMapping(method = RequestMethod.POST)
+  public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+    patientService.addPatient(patient);
+    return new ResponseEntity<>(patient, HttpStatus.ACCEPTED);
+
+  }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
