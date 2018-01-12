@@ -1,9 +1,10 @@
 package edu.ilisi.cabinet.configurations.security;
 
+import static edu.ilisi.cabinet.configurations.security.RoleConstants.ADMIN_AUTORITY;
+import static edu.ilisi.cabinet.configurations.security.RoleConstants.SECRETAIRE_AUTORITY;
 import static edu.ilisi.cabinet.configurations.security.SecurityConstants.SIGN_UP_URL_DOCTEUR;
 import static edu.ilisi.cabinet.configurations.security.SecurityConstants.SIGN_UP_URL_PATIENT;
 import static edu.ilisi.cabinet.configurations.security.SecurityConstants.SIGN_UP_URL_SECRETAIRE;
-import static edu.ilisi.cabinet.configurations.security.RoleConstants.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -11,7 +12,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;

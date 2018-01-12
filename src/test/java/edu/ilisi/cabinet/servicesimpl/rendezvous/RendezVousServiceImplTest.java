@@ -128,7 +128,8 @@ public class RendezVousServiceImplTest {
 
     Date jour = new Date();
 
-    List<RendezVous> result = fixture.getRendezVousJour(jour);
+    @SuppressWarnings("deprecation")
+    List<RendezVous> result = fixture.getRendezVousJour(jour.getYear(),jour.getMonth(),jour.getDay());
 
     // add additional test code here
     // An unexpected exception was thrown in user code while executing this test:

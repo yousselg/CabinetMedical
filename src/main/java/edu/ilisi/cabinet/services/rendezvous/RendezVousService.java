@@ -1,6 +1,5 @@
 package edu.ilisi.cabinet.services.rendezvous;
 
-import java.util.Date;
 import java.util.List;
 
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
@@ -19,6 +18,6 @@ public interface RendezVousService {
 
 	public List<RendezVous> getRendezVousMois(Integer annee,Integer mois);
 
-	public List<RendezVous> getRendezVousJour(Date jour);
+	public List<RendezVous> getRendezVousJour(Integer annee,Integer mois,Integer jour);
 
 }

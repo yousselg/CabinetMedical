@@ -1,6 +1,5 @@
 package edu.ilisi.cabinet.servicesimpl.rendezvous;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,8 @@ public class RendezVousServiceImpl implements RendezVousService {
 	}
 
 	@Override
-	public List<RendezVous> getRendezVousJour(Date jour) {
-		return rendezVousRepository.findByDate(jour);
+	public List<RendezVous> getRendezVousJour(Integer annee,Integer mois,Integer jour) {
+		return rendezVousRepository.findByGivenDate(annee,mois,jour);
 	}
 
 }

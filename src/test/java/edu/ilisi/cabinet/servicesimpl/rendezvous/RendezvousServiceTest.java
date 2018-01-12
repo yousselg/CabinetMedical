@@ -25,13 +25,12 @@ public class RendezvousServiceTest {
 	private RendezVousService rendezvousService;
 	private List<RendezVous> list = new ArrayList<RendezVous>();
 
-	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
 		RendezVous rendezVous = null;
 		for (int i = 0; i < 10; i++) {
 			rendezVous = new RendezVous();
-			rendezVous.setDate(new Date("2017/01/01"));
+			rendezVous.setDate(new Date());
 			list.add(rendezvousService.addRendezVous(rendezVous));
 		}
 	}
@@ -49,10 +48,11 @@ public class RendezvousServiceTest {
 	}
 
 	@Test
-	public void testGetRendezVousJour() {
-		@SuppressWarnings("deprecation")
-		List<RendezVous> rendezvous = rendezvousService.getRendezVousJour(new Date("2017/01/01"));
-		assertThat(rendezvous.size()).isGreaterThanOrEqualTo(10);
-	}
+  public void testGetRendezVousJour() {
+    
+    List<RendezVous> rendezvous = rendezvousService.getRendezVousJour(2018,01,12);
+    assertThat(rendezvous.size()).isGreaterThanOrEqualTo(10);
+  }
+	
 
 }

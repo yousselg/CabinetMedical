@@ -1,10 +1,8 @@
 package edu.ilisi.cabinet.controllers.rendezvous;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import edu.ilisi.cabinet.services.rendezvous.RendezVousService;
-import io.swagger.annotations.ApiParam;
 
 
 @RequestMapping("/rendezVous")
@@ -52,9 +49,10 @@ public class RendezVousController {
 		return new ResponseEntity<>(rendezVous, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/jour/{jour}", method = RequestMethod.GET)
-	public ResponseEntity<List<RendezVous>> getRendezVousByDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @ApiParam(value = "Format de parametre yyyy-MM-dd",format="yyyy-MM-dd",example="2017-01-01") Date jour) {
-		List<RendezVous> rendezVous = rendezVousService.getRendezVousJour(jour);
+	@RequestMapping(value = "/{annee}/{mois}/{jour}", method = RequestMethod.GET)
+	// Old : @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @ApiParam(value = "Format de parametre yyyy-MM-dd",format="yyyy-MM-dd",example="2017-01-01") Date jour
+	public ResponseEntity<List<RendezVous>> getRendezVousByDate(@PathVariable Integer annee,@PathVariable Integer mois,@PathVariable Integer jour) {
+		List<RendezVous> rendezVous = rendezVousService.getRendezVousJour(annee,mois,jour);
 		if (rendezVous == null)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<>(rendezVous, HttpStatus.OK);

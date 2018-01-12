@@ -14,4 +14,7 @@ public interface RendezvousRepository extends CrudRepository<RendezVous, Long> {
 	List<RendezVous> findByMois(Integer annee,Integer mois);
 
 	List<RendezVous> findByDate(Date dateJour);
+	
+	@Query("SELECT r FROM RendezVous r WHERE YEAR(r.date) = ?1 AND MONTH(r.date) = ?2 AND DAY(r.date) = ?3")
+	List<RendezVous> findByGivenDate(Integer annee,Integer mois,Integer jour);
 }
