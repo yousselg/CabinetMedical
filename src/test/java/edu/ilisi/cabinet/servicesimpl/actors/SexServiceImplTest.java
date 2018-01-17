@@ -56,7 +56,7 @@ public class SexServiceImplTest {
    *
    * @generatedBy CodePro at 05/01/18 15:43
    */
-  //@Test
+  // @Test
   public void testGetlistofSex_1() throws Exception {
 
     // List<RefSex> result = fixture.getlistofSex();
@@ -67,8 +67,7 @@ public class SexServiceImplTest {
     // java.lang.NullPointerException
     // at edu.ilisi.cabinet.servicesimpl.actors.SexServiceImpl.getlistofSex(SexServiceImpl.java:25)
     //
-    
-    
+
   }
 
   /**

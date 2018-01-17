@@ -22,7 +22,8 @@ public class SecretaireServiceImpl implements SecretaireService {
 
   @Override
   public void addSecretaire(Secretaire secretaire) {
-    secretaire.setPassword(bCryptPasswordEncoder.encode(secretaire.getPassword()));
+    secretaire.setUsername(secretaire.getEmail());
+    secretaire.setPassword(bCryptPasswordEncoder.encode(secretaire.getCIN()));
     secretaireRepository.save(secretaire);
   }
 

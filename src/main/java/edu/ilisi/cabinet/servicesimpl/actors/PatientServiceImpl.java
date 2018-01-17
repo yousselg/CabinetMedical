@@ -21,7 +21,8 @@ public class PatientServiceImpl implements PatientService {
 
   @Override
   public Patient addPatient(Patient patient) {
-    patient.setPassword(bCryptPasswordEncoder.encode(patient.getPassword()));
+    patient.setUsername(patient.getEmail());
+    patient.setPassword(bCryptPasswordEncoder.encode(patient.getCIN()));
     return patientRepository.save(patient);
   }
 

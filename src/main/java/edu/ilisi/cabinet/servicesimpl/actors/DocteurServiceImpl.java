@@ -29,7 +29,8 @@ public class DocteurServiceImpl implements DocteurService {
 
   @Override
   public Docteur addDocteur(Docteur docteur) {
-    docteur.setPassword(bCryptPasswordEncoder.encode(docteur.getPassword()));
+    docteur.setUsername(docteur.getEmail());
+    docteur.setPassword(bCryptPasswordEncoder.encode(docteur.getCIN()));
     return docteurRepository.save(docteur);
   }
 
