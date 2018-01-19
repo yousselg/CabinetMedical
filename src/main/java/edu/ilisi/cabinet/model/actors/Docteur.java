@@ -17,6 +17,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.ilisi.cabinet.model.consultationadistance.ConsultationDistance;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import lombok.Data;
@@ -46,6 +47,10 @@ public class Docteur extends Personne {
   @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "docteur", cascade = CascadeType.ALL)
   private List<Consultation> consultations;
+  
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "docteur", cascade = CascadeType.ALL)
+  private List<ConsultationDistance> consultationsDistance;
 
   @JsonIgnore
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "docteur", cascade = CascadeType.ALL)

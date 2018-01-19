@@ -18,4 +18,6 @@ public interface DossierMedicalService {
   DossierMedical getDossierMedical(Long id);
 
   Long addConsultation(Long id,Consultation consultation);
+  
+  DossierMedical getDossierMedicalByUsername(String username);
 }

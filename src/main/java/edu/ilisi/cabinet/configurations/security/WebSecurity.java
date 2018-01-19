@@ -36,11 +36,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             "/swagger-resources/configuration/ui", "/swagger-ui.html",
             "/swagger-resources/configuration/security").permitAll()
         /************************************************************************/
+        /*
         .antMatchers(HttpMethod.POST, URL_DOCTEUR, URL_SECRETAIRE).hasAnyAuthority(ADMIN_AUTORITY,SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY)
         .antMatchers(HttpMethod.POST, "/*").hasAnyAuthority(ADMIN_AUTORITY, SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY)
-        .antMatchers(HttpMethod.PUT, "/*").hasAnyAuthority(ADMIN_AUTORITY, SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY).
-        antMatchers(HttpMethod.DELETE, "/*").hasAnyAuthority(ADMIN_AUTORITY, SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY)
-        .anyRequest().authenticated().and()
+        .antMatchers(HttpMethod.PUT, "/*").hasAnyAuthority(ADMIN_AUTORITY, SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY)
+        .antMatchers(HttpMethod.DELETE, "/*").hasAnyAuthority(ADMIN_AUTORITY, SECRETAIRE_AUTORITY,DOCTEUR_AUTORITY)
+        .anyRequest().authenticated()
+        */
+        .anyRequest().permitAll()
+        .and()
         .addFilter(new JWTAuthenticationFilter(authenticationManager()))
         .addFilter(new JWTAuthorizationFilter(authenticationManager()))
         .logout();

@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.ilisi.cabinet.model.actors.Patient;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Consultation;
 import edu.ilisi.cabinet.model.dossiersmedicaux.DossierMedical;
+import edu.ilisi.cabinet.repositories.actors.PatientRepository;
 import edu.ilisi.cabinet.repositories.dossiersmedicaux.ConsultationRepository;
 import edu.ilisi.cabinet.repositories.dossiersmedicaux.DossierMedicalRepository;
 import edu.ilisi.cabinet.services.dossiersmedicaux.DossierMedicalService;
@@ -20,6 +22,9 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
 
   @Autowired
   private ConsultationRepository cnRepository;
+  
+  @Autowired
+  private PatientRepository patientRepository;
 
   @Override
   public void addDossieMecial(DossierMedical dossierMedical) {
@@ -57,5 +62,11 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
       return cnRepository.findTopByOrderByDateConsultationDesc().getIdConsultation();
     }
     return null;
+  }
+
+  @Override
+  public DossierMedical getDossierMedicalByUsername(String username) {
+    Patient patient = (Patient) patientRepository.findByUsername(username);
+    return dmRepository.findByPatient(patient);
   }
 }

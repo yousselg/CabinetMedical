@@ -111,4 +111,13 @@ public class DossierMedicalController {
 		headers.add("Location", "/consultation/" + idConsultation);
 		return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
 	}
+	
+	@RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
+  public ResponseEntity<DossierMedical> getDossierMedicalByUsername(@PathVariable String username) {
+	  DossierMedical dossierMedical = dmService.getDossierMedicalByUsername(username);
+    if (dossierMedical==null) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    return new ResponseEntity<>(dossierMedical, HttpStatus.OK);
+  }
 }

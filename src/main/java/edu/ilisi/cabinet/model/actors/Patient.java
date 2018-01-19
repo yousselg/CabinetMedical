@@ -21,6 +21,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.ilisi.cabinet.model.consultationadistance.ConsultationDistance;
 import edu.ilisi.cabinet.model.dossiersmedicaux.Maladie;
 import edu.ilisi.cabinet.model.rendezvous.RendezVous;
 import lombok.Data;
@@ -59,6 +60,10 @@ public class Patient extends Personne {
   @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.ALL)
   private Set<RendezVous> listRendezVous;
+  
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.ALL)
+  private List<ConsultationDistance> consultationsDistance;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
