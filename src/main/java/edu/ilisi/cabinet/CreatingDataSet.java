@@ -83,8 +83,6 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurA.setPrenom("Samad");
 		docteurA.setTelephone("0661234589");
 		docteurA.setDateNaissance(new Date(1970, 10, 15));
-		docteurA.setUsername("samadi");
-		docteurA.setPassword("password");
 		docteurA = docteurService.addDocteur(docteurA);
 
 		docteurB.setCIN("AA5289");
@@ -93,8 +91,6 @@ public class CreatingDataSet implements CommandLineRunner {
 		docteurB.setPrenom("Mourad");
 		docteurB.setTelephone("0661234589");
 		docteurB.setDateNaissance(new Date(1961, 1, 26));
-		docteurB.setUsername("alami");
-    docteurB.setPassword("password");
 		docteurB = docteurService.addDocteur(docteurB);
 
 		for (int i = 0; i < 30; i++) {
@@ -111,8 +107,6 @@ public class CreatingDataSet implements CommandLineRunner {
 			patient.setEmail("email" + i + i + "@mail.com");
 			patient.setNom("nom" + i);
 			patient.setPrenom("prenom" + i);
-			patient.setUsername("nom" + i);
-			patient.setPassword("password");
 			depense = new Depense();
 			depense.setDate(new Date("2017/" + month + "/" + day));
 			depense.setLibelle("Depense " + i);
